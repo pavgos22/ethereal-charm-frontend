@@ -1,0 +1,31 @@
+<h3>Wpisz adres dostawy:</h3>
+<form [formGroup]='addressForm'>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Miasto/Miejscowość</mat-label>
+      <input matInput [formControl]='controls.city'>
+      <mat-error *ngIf='controls.city.invalid'>{{ getErrorMessage(controls.city) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Ulica</mat-label>
+      <input matInput [formControl]='controls.street'>
+      <mat-error *ngIf='controls.street.invalid'>{{ getErrorMessage(controls.street) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Numer domu/mieszkania</mat-label>
+      <input matInput [formControl]='controls.number'>
+      <mat-error *ngIf='controls.number.invalid'>{{ getErrorMessage(controls.number) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Kod pocztowy</mat-label>
+      <input matInput [formControl]='controls.postCode'>
+      <mat-error *ngIf='controls.postCode.invalid'>{{ getErrorMessage(controls.postCode) }}</mat-error>
+    </mat-form-field>
+  </div>
+</form>

@@ -1,0 +1,18 @@
+<section *ngIf='orders.length > 0'>
+  <h2>Lista Twoich zamówień:</h2>
+  <mat-list>
+    <ng-container *ngFor='let order of orders'>
+      <div class='order-list-item'>
+        <span>{{order.orders}}</span>
+        <span>Status: {{order.status}}</span>
+        <span>Dostawa: {{order.deliver.name}}</span>
+        <button mat-raised-button color='primary' (click)='navigateToDetails(order.uuid)'>Szczegóły</button>
+      </div>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </mat-list>
+</section>
+
+<p *ngIf='!errorMsg && orders.length === 0'>Aktualnie brak zamówień dla tego użytkownika.</p>
+
+<app-alert [alertType]='"warning"' [message]='errorMsg' *ngIf='errorMsg'></app-alert>

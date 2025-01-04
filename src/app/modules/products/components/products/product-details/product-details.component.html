@@ -1,0 +1,60 @@
+<ng-container *ngIf="product">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <app-images-carousel
+        [productName]="product.name"
+        [imageUrls]="product.imageUrls">
+      </app-images-carousel>
+    </div>
+
+    <div class="col-md-6 col-12 d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <p class="product-name">{{ product.name }}</p>
+
+        <!-- Wyświetlanie ceny w zależności od wartości discount -->
+        <p>
+          <ng-container *ngIf="product.discount; else normalPrice">
+            <span class="old-price">{{ product.price | currency: 'zł' }}</span>
+            <span class="discounted-price">{{ product.discountedPrice | currency: 'zł' }}</span>
+          </ng-container>
+          <ng-template #normalPrice>
+            {{ product.price | currency: 'zł' }}
+          </ng-template>
+        </p>
+
+        <div class="d-flex justify-content-center">
+          <app-quantity-control [formControl]="quantityControl"></app-quantity-control>
+        </div>
+        <div class="d-flex justify-content-center my-2">
+          <button mat-raised-button color="primary" (click)="addToCart()">Dodaj do koszyka</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      <p class="product-desc">Opis produktu</p>
+      <div *ngIf="htmlContent" [innerHtml]="htmlContent" class="html-text"></div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="parameters">
+    <div class="col-md-12 mt-3">
+      <p class="product-desc">Specyfikacja</p>
+      <p class="text-center">Parametry</p>
+      <table class="table table-bordered">
+        <tbody>
+        <tr *ngFor="let parameter of parameters | keyvalue; let i = index">
+          <td class="text-end table-cell">
+            <span class="product-parameter-key">{{ parameter.key }}</span>
+          </td>
+          <td class="text-start table-cell">
+            {{ parameter.value }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>

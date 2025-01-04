@@ -1,0 +1,33 @@
+<h3>Wpisz swoje dane:</h3>
+<form [formGroup]='customerForm'>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Imię</mat-label>
+      <input matInput [formControl]='controls.firstName'>
+      <mat-error *ngIf='controls.firstName.invalid'>{{ getErrorMessage(controls.firstName) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Nazwisko</mat-label>
+      <input matInput [formControl]='controls.lastName'>
+      <mat-error *ngIf='controls.lastName.invalid'>{{ getErrorMessage(controls.lastName) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]='controls.email'>
+      <mat-error *ngIf='controls.email.invalid'>{{ getErrorMessage(controls.email) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class='form-input'>
+<!--    <mat-form-field appearance='fill'>-->
+<!--      <mat-label>Numer telefonu</mat-label>-->
+<!--      <input type='password' matInput [formControl]='controls.phone'>-->
+<!--      <mat-error *ngIf='controls.phone.invalid'>{{ getErrorMessage(controls.phone) }}</mat-error>-->
+<!--    </mat-form-field>-->
+    <app-phone-control formControlName="phone"></app-phone-control>
+
+  </div>
+</form>

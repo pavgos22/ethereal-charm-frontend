@@ -1,0 +1,14 @@
+.favourites {
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}

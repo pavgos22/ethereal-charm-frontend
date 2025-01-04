@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <h2>Szczegóły użytkownika</h2>
+  <table class="table table-bordered">
+    <tr>
+      <th>Login</th>
+      <td>{{ user?.login }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ user?.email }}</td>
+    </tr>
+    <tr>
+      <th>Rola</th>
+      <td>{{ user?.role }}</td>
+    </tr>
+    <tr>
+      <th>Imię</th>
+      <td>{{ user?.firstName }}</td>
+    </tr>
+    <tr>
+      <th>Nazwisko</th>
+      <td>{{ user?.lastName }}</td>
+    </tr>
+    <tr>
+      <th>Telefon</th>
+      <td>{{ user?.phone }}</td>
+    </tr>
+    <tr>
+      <th>Miasto</th>
+      <td>{{ user?.city }}</td>
+    </tr>
+    <tr>
+      <th>Ulica</th>
+      <td>{{ user?.street }}</td>
+    </tr>
+    <tr>
+      <th>Numer</th>
+      <td>{{ user?.apartmentNumber }}</td>
+    </tr>
+    <tr>
+      <th>Kod pocztowy</th>
+      <td>{{ user?.postalCode }}</td>
+    </tr>
+    <tr *ngIf="user?.company">
+      <th>Firma</th>
+      <td>{{ user?.companyName }}</td>
+    </tr>
+    <tr *ngIf="user?.company">
+      <th>NIP</th>
+      <td>{{ user?.nip }}</td>
+    </tr>
+  </table>
+</div>

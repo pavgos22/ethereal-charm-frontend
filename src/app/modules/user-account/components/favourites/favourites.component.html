@@ -1,0 +1,10 @@
+<div class="favourites">
+  <h2>Ulubione produkty</h2>
+  <div class="products-grid">
+    <app-product
+      *ngFor="let product of favouriteProducts"
+      [product]="product"
+      (editProduct)="openEditDialog($event)">
+    </app-product>
+  </div>
+</div>

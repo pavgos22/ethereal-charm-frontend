@@ -1,0 +1,5 @@
+<div class='quantity-control-wrapper'>
+  <button class='rounded-button' (click)='decrement()'>-</button>
+  <input type='text' [formControl]='quantityControl' class='quantity-control' appInputOnlyNumber>
+  <button class='rounded-button' (click)='increment()'>+</button>
+</div>

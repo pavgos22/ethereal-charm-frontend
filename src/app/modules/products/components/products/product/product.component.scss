@@ -1,0 +1,125 @@
+.card {
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .favourite-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &.active {
+      color: red;
+    }
+
+    &:hover {
+      color: rgba(255, 0, 0, 0.8);
+    }
+  }
+
+  .edit-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+
+    .regular-icon,
+    .solid-icon {
+      transition: transform 0.3s;
+    }
+
+    .solid-icon {
+      display: none;
+    }
+
+    &:hover {
+      color: #666;
+    }
+
+    &:hover .regular-icon {
+      display: none;
+    }
+
+    &:hover .solid-icon {
+      display: inline;
+    }
+
+    &:hover .solid-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  .priority-icon {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+
+    &:hover {
+      color: #666;
+      transform: scale(1.1);
+    }
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 10px;
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .price-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .original-price {
+        text-decoration: line-through;
+        color: #a0a0a0;
+        font-size: 1rem;
+      }
+
+      .discounted-price {
+        font-size: 1.1rem;
+        color: green;
+        font-weight: bold;
+      }
+
+      .card-price {
+        font-size: 1.1rem;
+        color: green;
+        font-weight: bold;
+      }
+    }
+  }
+}

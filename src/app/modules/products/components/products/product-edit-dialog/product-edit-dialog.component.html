@@ -1,0 +1,34 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>Edytuj Produkt</h3>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="price">Cena</label>
+        <input id="price" type="number" formControlName="price" class="form-control" placeholder="Podaj cenę" />
+      </div>
+
+      <div class="form-group">
+        <label for="discount" class="checkbox-label">
+          <input id="discount" type="checkbox" formControlName="discount" />
+          Promocja
+        </label>
+      </div>
+
+      <div class="form-group" *ngIf="editForm.get('discount')?.value">
+        <label for="discountedPrice">Cena promocyjna</label>
+        <input
+          id="discountedPrice"
+          type="number"
+          formControlName="discountedPrice"
+          class="form-control"
+          placeholder="Podaj cenę promocyjną"
+        />
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Zapisz</button>
+        <button type="button" class="btn btn-secondary" (click)="closeDialog()">Anuluj</button>
+      </div>
+    </form>
+  </div>
+</div>

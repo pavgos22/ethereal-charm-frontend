@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2>Lista użytkowników</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Login</th>
+      <th>Email</th>
+      <th>Rola</th>
+      <th>Firma</th>
+      <th>Aktywowany</th>
+      <th>Zablokowany</th>
+      <th>Akcja</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.login }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+      <td>{{ user.company ? 'Tak' : 'Nie' }}</td>
+      <td>{{ user.enabled ? 'Tak' : 'Nie' }}</td>
+      <td>{{ user.lock ? 'Tak' : 'Nie' }}</td>
+      <td>
+        <button class="btn btn-primary" [routerLink]="['/admin/panel/user', user.uuid]">Szczegóły</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

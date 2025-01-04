@@ -1,0 +1,50 @@
+<div class="card" [routerLink]="getProductDetailsUrl()">
+  <span
+    class="favourite-icon"
+    [class.active]="isFavourite"
+    (click)="toggleFavourite($event)"
+  >
+    <i [class]="'fa-heart ' + (isFavourite ? 'fa-solid' : 'fa-regular')"></i>
+  </span>
+
+  <ng-container *ngIf="user$ | async as user">
+  <span
+    *ngIf="isAdmin(user.role)"
+    class="edit-icon"
+    (click)="openEditDialog($event)"
+  >
+    <i class="fa-solid fa-magnifying-glass-dollar"></i>
+  </span>
+    <span *ngIf="isAdmin(user.role)" class="priority-icon" (click)="openPriorityEditDialog($event)">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-sort-ascending-numbers">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M4 15l3 3l3 -3" />
+    <path d="M7 6v12" />
+    <path d="M17 3a2 2 0 0 1 2 2v3a2 2 0 1 1 -4 0v-3a2 2 0 0 1 2 -2z" />
+    <path d="M17 16m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+    <path d="M19 16v3a2 2 0 0 1 -2 2h-1.5" />
+  </svg>
+</span>
+  </ng-container>
+
+
+  <img [src]="product.imageUrl" [alt]="product.name" class="card-img-top" />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <div class="price-container">
+      <span *ngIf="product.discount; else normalPrice" class="original-price">
+        {{ product.price | currency: 'zł' }}
+      </span>
+      <span *ngIf="product.discount" class="discounted-price">
+        {{ product.discountedPrice | currency: 'zł' }}
+      </span>
+
+      <ng-template #normalPrice>
+        <span class="card-price">{{ product.price | currency: 'zł' }}</span>
+      </ng-template>
+    </div>
+    <p class="card-text">{{ product.mainDesc }}</p>
+  </div>
+</div>

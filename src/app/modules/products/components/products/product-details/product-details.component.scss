@@ -1,0 +1,32 @@
+.product-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.product-desc {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.table-cell {
+  width: 50%;
+}
+
+.product-parameter-key {
+  font-weight: 500;
+}
+
+.html-text {
+  overflow-wrap: break-word;
+}
+
+.old-price {
+  text-decoration: line-through;
+  margin-right: 0.5rem;
+  color: #888;
+}
+
+.discounted-price {
+  font-weight: bold;
+  color: green;
+}

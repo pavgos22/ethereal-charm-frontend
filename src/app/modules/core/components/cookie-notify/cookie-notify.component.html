@@ -1,0 +1,11 @@
+<div class="cookie-notification" [class.visible]="isVisible">
+  <p>
+    Ta strona korzysta z plików cookie w celu zapewnienia najlepszej jakości usług.
+    Kliknij "Akceptuj wszystkie", aby zaakceptować wszystkie ciasteczka lub
+    "Akceptuj tylko niezbędne", aby zgodzić się tylko na podstawowe.
+  </p>
+  <div class="buttons">
+    <button class="btn-primary" (click)="acceptAllCookies()">Akceptuj wszystkie</button>
+    <button class="btn-secondary" (click)="acceptNecessaryCookies()">Akceptuj tylko niezbędne</button>
+  </div>
+</div>

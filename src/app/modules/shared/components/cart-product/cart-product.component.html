@@ -1,0 +1,14 @@
+<div class='basket-product'>
+  <div class='basket-product-img-wrapper'>
+    <img [src]='cartProduct.imageUrl' [alt]='cartProduct.name' class='basket-product-img'>
+  </div>
+  <div class='basket-product-name'>
+    {{cartProduct.name}}
+  </div>
+  <div class='basket-product-prices'>
+    <span>{{cartProduct.price | currency: 'zł'}}</span>
+    <span>x {{cartProduct.quantity}}</span>
+    <span>{{cartProduct.summaryPrice | currency: 'zł'}}</span>
+    <mat-icon class='basket-product-icon' matTooltip='Usuń produkt z koszyka' (click)='deleteProductFromCart()' *ngIf='cartView'>cancel</mat-icon>
+  </div>
+</div>

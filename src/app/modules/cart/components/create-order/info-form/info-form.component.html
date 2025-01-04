@@ -1,0 +1,12 @@
+<h3>Informacje dodatkowe:</h3>
+<form [formGroup]="infoForm">
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Informacje</mat-label>
+      <textarea matInput [formControl]="controls['info']"></textarea>
+      <mat-error *ngIf="controls['info'].invalid">
+        {{ getErrorMessage(controls['info']) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>

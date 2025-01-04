@@ -1,0 +1,21 @@
+<h3>Dane firmy:</h3>
+<form [formGroup]="companyForm">
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Nazwa firmy</mat-label>
+      <input matInput [formControl]="controls['companyName']" />
+      <mat-error *ngIf="controls['companyName'].invalid">
+        {{ getErrorMessage(controls['companyName']) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>NIP</mat-label>
+      <input matInput [formControl]="controls['nip']" />
+      <mat-error *ngIf="controls['nip'].invalid">
+        {{ getErrorMessage(controls['nip']) }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>

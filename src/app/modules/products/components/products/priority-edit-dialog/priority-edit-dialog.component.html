@@ -1,0 +1,16 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>Edytuj Priorytet</h3>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="priority">Priorytet</label>
+        <input id="priority" type="number" formControlName="priority" class="form-control" placeholder="Podaj priorytet" />
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Zapisz</button>
+        <button type="button" class="btn btn-secondary" (click)="closeDialog()">Anuluj</button>
+      </div>
+    </form>
+  </div>
+</div>

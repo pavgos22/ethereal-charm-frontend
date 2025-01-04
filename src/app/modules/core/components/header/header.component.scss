@@ -1,0 +1,30 @@
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.display-initial {
+  display: initial;
+
+  .basket-quantity {
+    font: 500 11px roboto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: -18px;
+    right: -14px;
+    background-color: #e97070;
+  }
+
+  .icon-height {
+    line-height: 30px;
+  }
+}
+
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}

@@ -1,0 +1,81 @@
+<h2>Edytuj profil</h2>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <h3>Twoje dane:</h3>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Imię</mat-label>
+      <input matInput [formControl]="controls['firstName']">
+      <mat-error *ngIf="controls['firstName'].invalid">{{ getErrorMessage(controls['firstName']) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Nazwisko</mat-label>
+      <input matInput [formControl]="controls['lastName']">
+      <mat-error *ngIf="controls['lastName'].invalid">{{ getErrorMessage(controls['lastName']) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="controls['email']">
+      <mat-error *ngIf="controls['email'].invalid">{{ getErrorMessage(controls['email']) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <app-phone-control [formControl]="controls['phone']"></app-phone-control>
+  </div>
+
+  <h3>Adres:</h3>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Miasto</mat-label>
+      <input matInput [formControl]="controls['city']">
+      <mat-error *ngIf="controls['city'].invalid">{{ getErrorMessage(controls['city']) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Ulica</mat-label>
+      <input matInput [formControl]="controls['street']">
+      <mat-error *ngIf="controls['street'].invalid">{{ getErrorMessage(controls['street']) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Numer</mat-label>
+      <input matInput [formControl]="controls['number']">
+      <mat-error *ngIf="controls['number'].invalid">{{ getErrorMessage(controls['number']) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-input">
+    <mat-form-field appearance="fill">
+      <mat-label>Kod pocztowy</mat-label>
+      <input matInput [formControl]="controls['postCode']">
+      <mat-error *ngIf="controls['postCode'].invalid">{{ getErrorMessage(controls['postCode']) }}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <h3>Dane firmy:</h3>
+  <mat-checkbox formControlName="company">Zamawiam jako firma</mat-checkbox>
+  <div *ngIf="controls['company'].value" class="company-fields">
+    <div class="form-input">
+      <mat-form-field appearance="fill">
+        <mat-label>Nazwa firmy</mat-label>
+        <input matInput [formControl]="controls['companyName']">
+        <mat-error *ngIf="controls['companyName'].invalid">{{ getErrorMessage(controls['companyName']) }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-input">
+      <mat-form-field appearance="fill">
+        <mat-label>NIP</mat-label>
+        <input matInput [formControl]="controls['nip']">
+        <mat-error *ngIf="controls['nip'].invalid">{{ getErrorMessage(controls['nip']) }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button mat-raised-button color="primary" [disabled]="profileForm.invalid">Zapisz</button>
+  </div>
+</form>

@@ -1,0 +1,52 @@
+<section>
+  <div class='autocomplete-search'>
+    <mat-form-field>
+      <mat-label>Wyszukaj produkty</mat-label>
+      <input
+      type='text'
+      matInput
+      [formControl]='searchControl'
+      [matAutocomplete]='auto'>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor='let option of filteredOptions | async' [value]='option.name'>
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <div class='searched-params'>
+      <mat-form-field>
+        <mat-label>Sortuj po</mat-label>
+        <mat-select [formControl]='sortControl'>
+          <mat-option value=''>-</mat-option>
+          <mat-option value='price'>Cenie</mat-option>
+          <mat-option value='category'>Kategorii</mat-option>
+          <mat-option value='name'>Nazwie</mat-option>
+          <mat-option value='data'>Dacie dodania</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sortuj</mat-label>
+        <mat-select [formControl]='orderControl'>
+          <mat-option value=''>-</mat-option>
+          <mat-option value='asc'>rosnąco</mat-option>
+          <mat-option value='desc'>malejąco</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class='d-flex justify-content-end my-2'>
+      <button mat-raised-button color='primary' (click)='searchProducts()'>
+        Wyszukaj
+      </button>
+    </div>
+  </div>
+  <div class="products-list">
+    <app-product
+      *ngFor="let product of products"
+      [product]="product"
+      (editProduct)="openEditDialog($event)">
+    </app-product>
+  </div>
+  <mat-paginator *ngIf='!errorMessage' [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons>
+  </mat-paginator>
+  <app-alert *ngIf='errorMessage' [alertType]='"warning"' [message]='errorMessage'></app-alert>
+</section>

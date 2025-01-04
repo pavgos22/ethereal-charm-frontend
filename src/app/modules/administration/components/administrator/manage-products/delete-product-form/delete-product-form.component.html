@@ -1,0 +1,17 @@
+<section class='my-2'>
+  <div>
+    <mat-form-field>
+      <mat-label>Wyszukaj produkt do usunięcia</mat-label>
+      <input
+        type='text'
+        matInput
+        [formControl]='searchControl'
+        [matAutocomplete]='auto'>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor='let option of filteredOptions | async' [value]='option.name' (click)='openDeleteProductDialog(option.name, option.createAt)'>
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+</section>

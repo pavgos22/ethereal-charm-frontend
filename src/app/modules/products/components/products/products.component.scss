@@ -1,0 +1,10 @@
+.products-list {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.searched-params {
+  display: flex;
+  gap: 0.8rem;
+}

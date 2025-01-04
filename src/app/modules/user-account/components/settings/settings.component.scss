@@ -1,0 +1,62 @@
+.cookie-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cookie-toggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
+
+    .toggle {
+      width: 50px;
+      height: 24px;
+      background-color: #ccc;
+      border-radius: 12px;
+      position: relative;
+      transition: background-color 0.3s;
+
+      .circle {
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        transition: transform 0.3s;
+      }
+    }
+
+    input:checked + .toggle {
+      background-color: #4caf50;
+
+      .circle {
+        transform: translateX(26px);
+      }
+    }
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #c82333;
+    }
+  }
+}

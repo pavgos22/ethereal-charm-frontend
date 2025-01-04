@@ -1,0 +1,51 @@
+<section *ngIf="order">
+  <p>Numer zamówienia: {{ order.orders }}</p>
+  <p>Status zamówienia: <b>{{ order.status }}</b></p>
+  <p>Kwota zamówienia: {{ order.summaryPrice | currency: 'zł' }}</p>
+
+  <div class="row my-2">
+    <div class="col-md-6">
+      <h2>Dane klienta:</h2>
+      <p>Imię: {{ order.customerDetails.firstName }}</p>
+      <p>Nazwisko: {{ order.customerDetails.lastName }}</p>
+      <ng-container>
+        <p>Nazwa firmy: {{ order.isCompany ? order.companyName : 'BRAK (Osoba prywatna)' }}</p>
+        <p>NIP: {{ order.isCompany ? order.nip : 'BRAK (Osoba prywatna)' }}</p>
+      </ng-container>
+    </div>
+    <div class="col-md-6" *ngIf="order.address as address">
+      <h2>Adres dostawy:</h2>
+      <p>Miasto: {{ address.city }}</p>
+      <p>Ulica: {{ address.street }}</p>
+      <p>Numer domu/mieszkania: {{ address.number }}</p>
+      <p>Kod pocztowy: {{ address.postCode }}</p>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    <div class="col-md-6">
+      <h2>Sposób dostawy:</h2>
+      <p>{{ order.deliver.name }}</p>
+    </div>
+    <div class="col-md-6">
+      <h2>Informacje do zamówienia:</h2>
+      <p>{{ order.info || 'BRAK' }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>Produkty w zamówieniu:</h2>
+    <div class="basket-product" *ngFor="let cartProduct of order.items">
+      <app-cart-product
+        [cartView]="false"
+        [cartProduct]="cartProduct"
+      ></app-cart-product>
+    </div>
+  </div>
+</section>
+
+<app-alert
+  *ngIf="errorMsg"
+  [message]="errorMsg"
+  [alertType]="'warning'"
+></app-alert>

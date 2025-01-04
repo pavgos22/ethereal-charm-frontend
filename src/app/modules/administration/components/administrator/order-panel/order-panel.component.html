@@ -1,0 +1,42 @@
+<div *ngIf="errorMsg" class="alert alert-danger">
+  {{ errorMsg }}
+</div>
+
+<table class="table table-striped" *ngIf="transactions.length > 0">
+  <thead>
+  <tr>
+    <th>Numer Zamówienia</th>
+    <th>Status</th>
+    <th>Imię i Nazwisko</th>
+    <th>Telefon</th>
+    <th>Email</th>
+    <th>Adres</th>
+    <th>Kod Pocztowy</th>
+    <th>Dostawa</th>
+    <th>Faktura</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transaction of transactions">
+    <td>
+      <a [routerLink]="['/admin/panel/orders', transaction.uuid]">
+        {{ transaction.orders }}
+      </a>
+    </td>
+
+    <td>{{ transaction.status }}</td>
+    <td>{{ transaction.firstName }} {{ transaction.lastName }}</td>
+    <td>{{ transaction.phone }}</td>
+    <td>{{ transaction.email }}</td>
+    <td>{{ transaction.street }} {{ transaction.number }}, {{ transaction.city }}</td>
+    <td>{{ transaction.postCode }}</td>
+    <td>{{ transaction.deliverUuid }}</td>
+    <td>{{ transaction.isCompany ? 'TAK' : 'NIE' }}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<div *ngIf="transactions.length === 0 && !errorMsg" class="alert alert-info">
+  Brak zamówień do wyświetlenia.
+</div>
