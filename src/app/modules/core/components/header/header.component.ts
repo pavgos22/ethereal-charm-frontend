@@ -20,8 +20,8 @@ export class HeaderComponent implements OnInit {
   cartTotalCount$: BehaviorSubject<number> = this.cartService.totalCount$;
 
   categories: Category[] = [
-    { name: 'meble', shortId: 12345678 },
-    { name: 'kuchenne', shortId: 22345678 }
+    // { name: 'meble', shortId: 12345678 },
+    // { name: 'kuchenne', shortId: 22345678 }
   ];
 
   constructor(

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Sklep</a>
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">Ethereal Charm</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -21,21 +21,24 @@
             routerLink=""
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-          >Strona główna</a
           >
+            Strona główna
+          </a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" [routerLink]="['/products']" [queryParams]="{ page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }">
+          <a
+            class="nav-link dropdown-toggle"
+            routerLinkActive="active"
+            [routerLink]="['/products']"
+            [queryParams]="{ page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }"
+          >
             Produkty
           </a>
           <ul class="dropdown-menu">
             <ng-container *ngFor="let category of categories; let last = last">
               <li>
-                <a
-                  class="dropdown-item"
-                  (click)="navigateToCategory(category)"
-                >
+                <a class="dropdown-item" (click)="navigateToCategory(category)">
                   {{ category.name }}
                 </a>
               </li>
@@ -46,85 +49,132 @@
           </ul>
         </li>
 
-        <ng-container *ngIf="user$ | async as user; else notUser">
-          <li class="nav-item" *ngIf="isAdmin(user.role)">
-            <a
-              class="nav-link"
-              routerLink="/admin/panel"
-            >Administracja</a
-            >
-          </li>
-        </ng-container>
-        <ng-template #notUser>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="login">Logowanie</a>
-          </li>
-        </ng-template>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/about"
+            routerLinkActive="active"
+          >
+            O nas
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/contact"
+            routerLinkActive="active"
+          >
+            Kontakt
+          </a>
+        </li>
       </ul>
 
       <ul class="navbar-nav">
+        <!-- Cart Icon -->
         <li class="nav-item">
-          <a class="nav-link display-initial" routerLink="/cart">
-            <span class="position-relative">
-              <span
-                class="position-absolute d-flex justify-content-center align-items-center basket-quantity"
-                *ngIf="cartTotalCount$ | async as cartTotalCount"
-              >{{ cartTotalCount }}</span
-              >
-              <mat-icon class="icon-height">shopping_basket</mat-icon>
-            </span>
+          <a class="nav-link display-initial cart-icon" routerLink="/cart">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg>
           </a>
         </li>
-        <ng-container *ngIf="user$ | async as user">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link display-initial"
-              routerLink="/account/profile"
-              id="accountLink"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+
+        <!-- Favourites Icon -->
+        <li class="nav-item">
+          <a
+            class="nav-link display-initial cart-icon"
+            [routerLink]="(user$ | async) ? '/account/favourites' : '/login'"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-heart"
             >
-              <mat-icon class="icon-height">account_circle</mat-icon>
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
+              />
+            </svg>
+          </a>
+        </li>
+
+
+        <!-- User Icon -->
+        <li class="nav-item dropdown" *ngIf="user$ | async as user; else notLoggedIn">
+          <a
+            class="nav-link display-initial user-icon"
+            id="accountLink"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-user"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+            </svg>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountLink">
+            <li>
+              <a class="dropdown-item" routerLink="/account/profile">Profil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/account/orders">Zamówienia</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/account/favourites">Ulubione</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/account/settings">Ustawienia</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <button class="dropdown-item" (click)="logout()">Wyloguj się</button>
+            </li>
+          </ul>
+        </li>
+
+        <!-- User Icon for Not Logged-In Users -->
+        <ng-template #notLoggedIn>
+          <li class="nav-item">
+            <a class="nav-link display-initial user-icon" routerLink="/login">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-user"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+              </svg>
             </a>
-            <ul
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="accountLink"
-            >
-              <li>
-                <a class="dropdown-item" routerLink="/account/profile">Profil</a>
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="/account/orders"
-                >Zamówienia</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="/account/favourites"
-                >Ulubione</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="/account/settings"
-                >Ustawienia</a
-                >
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
-                <button class="dropdown-item" (click)="logout()">
-                  Wyloguj się
-                </button>
-              </li>
-            </ul>
           </li>
-        </ng-container>
+        </ng-template>
       </ul>
     </div>
   </div>

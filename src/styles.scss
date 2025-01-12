@@ -7,8 +7,20 @@
   box-sizing: border-box;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+  font-family: "Charm", serif !important;
+  font-weight: 400 !important;
+  line-height: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cormorant Garamond", serif !important;
+  font-weight: 700 !important;
+}
 
 mat-form-field {
   width: 100%;
@@ -17,3 +29,8 @@ mat-form-field {
 .dialog {
   min-width: 600px;
 }
+
+.container.mt-4 {
+  margin-top: 0 !important;
+}
+

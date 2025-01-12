@@ -10,7 +10,7 @@ import { CartService } from './modules/core/services/cart.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'projekt-wspolny-fe';
+  title = 'ethereal-charm';
 
   constructor(
     private store: Store<AppState>,
