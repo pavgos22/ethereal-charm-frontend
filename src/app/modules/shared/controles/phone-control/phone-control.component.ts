@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -21,6 +21,7 @@ import { COUNTRY_CODES } from 'src/assets/country-codes';
   ]
 })
 export class PhoneControlComponent implements ControlValueAccessor, OnDestroy {
+  @Input() submitted = false;
   numberPrefixControl = new FormControl('', [Validators.required]);
   numberControl = new FormControl('', [
     Validators.required,

@@ -1,0 +1,61 @@
+main {
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.user-account-page {
+  background: url('/assets/img/forms/bg/so-white.png') repeat;
+  min-height: 100vh;
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.account-layout {
+  background: white;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 40px 30px -20px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.tabs-header {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1px;
+  padding-left: 20px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    width: 50%;
+    height: 1px;
+    background-color: #ccc;
+  }
+}
+
+.nav-tabs {
+  margin-left: 1rem;
+  border-bottom: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.content-wrapper {
+  width: 100%;
+}

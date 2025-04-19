@@ -1,34 +1,45 @@
-<div class="cookie-settings">
-  <div class="cookie-toggle">
-    <label>
-      <input
-        type="checkbox"
-        checked
-        disabled
-      />
-      <span class="toggle">
-        <span class="circle"></span>
-      </span>
-      <div class="mx-3">Akceptuję tylko niezbędne ciasteczka</div>
-    </label>
-  </div>
+<main>
+  <div class="box">
+    <div class="inner-box">
+        <h2 class="form-title pt-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+               stroke="#8c6464" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               style="vertical-align:middle; margin-left:2px; margin-bottom:6px;"
+               class="icon icon-tabler icons-tabler-outline icon-tabler-settings">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path
+              d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"/>
+            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/>
+          </svg>
+          Ustawienia
+        </h2>
 
-  <div class="cookie-toggle">
-    <label>
-      <input
-        type="checkbox"
-        [(ngModel)]="allCookies"
-        (change)="onToggleChange('all', $event)">
-      <span class="toggle">
-        <span class="circle"></span>
-      </span>
-      <div class="mx-3">Akceptuję wszystkie ciasteczka</div>
-    </label>
-  </div>
-  <button (click)="onDeactivateAccount()" class="btn btn-danger">
-    Usuń konto
-  </button>
-  <button (click)="onChangePassword()" class="btn btn-primary">
-    Zmień hasło
-  </button>
-</div>
+        <div class="cookie-toggle my-4">
+          <div class="checkbox-wrapper-7">
+            <input class="tgl tgl-ios" id="cb2-7" type="checkbox" checked disabled/>
+            <label class="tgl-btn" for="cb2-7"></label>
+          </div>
+          <div class="mx-3">Akceptuję tylko niezbędne ciasteczka</div>
+        </div>
+
+        <div class="cookie-toggle mb-4">
+          <div class="checkbox-wrapper-7">
+            <input class="tgl tgl-ios" id="cb2-8" type="checkbox" [(ngModel)]="allCookies"
+                   (change)="onToggleChange('all', $event)">
+            <label class="tgl-btn" for="cb2-8"></label>
+          </div>
+          <div class="mx-3">Akceptuję wszystkie ciasteczka</div>
+        </div>
+
+        <button (click)="onChangePassword()" class="btn btn-primary">
+          Zmień hasło
+        </button>
+
+        <button (click)="onDeactivateAccount()" class="btn btn-danger">
+          Usuń konto
+        </button>
+
+        <div class="p-2"></div>
+      </div>
+    </div>
+</main>

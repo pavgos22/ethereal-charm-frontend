@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginForm } from '../../../core/models/forms.model';
@@ -13,28 +13,53 @@ import { selectAuthError, selectAuthLoading } from '../../store/auth.selectors';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnDestroy {
-  loginForm: FormGroup<LoginForm> = this.formSerivce.initLoginForm();
+export class LoginComponent implements OnDestroy, AfterViewInit {
+  loginForm: FormGroup<LoginForm> = this.formService.initLoginForm();
+
+  submitted = false;
 
   errorMsg$: Observable<string | null> = this.store.select(selectAuthError);
   loading$: Observable<boolean> = this.store.select(selectAuthLoading);
 
-  get controls() {
-    return this.loginForm.controls;
-  }
   constructor(
-    private formSerivce: FormService,
+    private formService: FormService,
     private store: Store<AppState>
   ) {}
 
-  getErrorMessage(control: FormControl) {
-    return this.formSerivce.getErrorMessage(control);
+  get controls() {
+    return this.loginForm.controls;
   }
 
-  onLogin() {
+  getErrorMessage(control: FormControl): string {
+    return this.formService.getErrorMessage(control);
+  }
+
+  onLogin(): void {
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     this.store.dispatch(
       AuthActions.login({ loginData: this.loginForm.getRawValue() })
     );
+  }
+
+  ngAfterViewInit(): void {
+    const inputs = document.querySelectorAll<HTMLInputElement>('.input-field');
+
+    inputs.forEach((inp) => {
+      inp.addEventListener('focus', () => {
+        inp.classList.add('active');
+      });
+
+      inp.addEventListener('blur', () => {
+        if (inp.value === '') {
+          inp.classList.remove('active');
+        }
+      });
+    });
   }
 
   ngOnDestroy(): void {

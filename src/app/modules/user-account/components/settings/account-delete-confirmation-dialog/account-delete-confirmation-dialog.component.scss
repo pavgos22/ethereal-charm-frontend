@@ -1,10 +1,43 @@
-mat-dialog-content {
-  font-size: 16px;
-  color: #333;
+.dialog-wrapper {
+  padding: 20px;
 }
 
-mat-dialog-actions {
-  button {
-    margin-left: 8px;
+.dialog-content {
+  margin-bottom: 20px;
+}
+
+.dialog-actions {
+  float: right;
+}
+
+.btn {
+  margin: 5px 5px 20px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.btn-primary {
+  background: #151111;
+
+  &:hover {
+    background: #c0a5a5;
+  }
+}
+
+.btn-danger {
+  background: #8c6464;
+
+  &:hover {
+    background: #c0a5a5;
   }
 }

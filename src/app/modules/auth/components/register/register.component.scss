@@ -1,0 +1,230 @@
+*, *::before *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: url("/assets/img/forms/bg/so-white.png");
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poiret One", sans-serif !important;
+}
+
+input {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 1020px;
+  height: 640px;
+  background-color: #f8f5f5;
+  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+.inner-box {
+  position: absolute;
+  width: calc(100% - 4.1rem);
+  height: calc(100% - 4.1rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.forms-wrap {
+  position: absolute;
+  height: 100%;
+  width: 45%;
+  top: 0;
+  left: 0;
+}
+
+.side-photo {
+  position: absolute;
+  height: 100%;
+  width: 55%;
+  left: 45%;
+  top: 0;
+  background-image: url("/assets/img/forms/login-img2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  //border: #a18f8f 3px solid;
+}
+
+form {
+  max-width: 260px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.heading {
+  margin-top: 3.5rem;
+}
+
+.heading h2 {
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #151111;
+}
+
+.heading h6 {
+  color: #999999;
+  font-weight: 400;
+  font-size: 0.75rem;
+  display: inline;
+}
+
+.logo {
+  font-family: "WindSong", serif;
+  position: absolute;
+  height: 100%;
+  width: 45%;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.logo a {
+  color: #c0a5a5;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.toggle {
+  color: #151111;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.toggle:hover {
+  color: #8c6464;
+}
+
+.form-input {
+  position: relative;
+  height: 37px;
+}
+
+.input-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #bbb;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #151111;
+  transition: 0.4s;
+}
+
+label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #bbb;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.input-field.active {
+  border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+  font-size: 0.75rem;
+  top: -2px;
+}
+
+.register-btn {
+  display: inline-block;
+  width: 100%;
+  height: 43px;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background-color: #c0a5a5;
+}
+
+.text {
+  color: #bbb;
+  font-size: 0.7rem;
+}
+
+.text a {
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.text a:hover {
+  color: #8c6464;
+}
+
+.control-err {
+  font-size: 0.75rem;
+  margin-bottom: 1.8rem;
+}
+
+.control-err {
+  min-height: 1.4rem;
+  margin-bottom: 0;
+  font-size: 0.75rem;
+}
+
+.control-err mat-error {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .side-photo {
+    display: none;
+  }
+
+  .forms-wrap {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    padding-top: 40px;
+  }
+
+  .inner-box {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+  }
+
+  form {
+    max-width: 100%;
+    padding: 1rem;
+  }
+}

@@ -1,40 +1,25 @@
-<ul class="nav nav-tabs my-3">
-  <li class="nav-item">
-    <a
-      class="nav-link"
-      routerLink="profile"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >Profil</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link"
-      routerLink="orders"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >Zamówienia</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link"
-      routerLink="favourites"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >Ulubione</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link"
-      routerLink="settings"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >Ustawienia</a
-    >
-  </li>
-</ul>
+<main class="user-account-page">
+  <div class="account-layout">
+    <div class="tabs-header">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="orders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Zamówienia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="favourites" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Ulubione</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="settings" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Ustawienia</a>
+        </li>
+      </ul>
+    </div>
 
-<router-outlet></router-outlet>
+    <div class="tab-content-box">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</main>

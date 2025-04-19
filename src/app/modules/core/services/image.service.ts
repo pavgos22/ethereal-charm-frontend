@@ -4,18 +4,18 @@ import {
   HttpClient,
   HttpEvent,
   HttpParams,
-  HttpResponse,
+  HttpResponse
 } from '@angular/common/http';
 import { map, Observable, of, switchMap } from 'rxjs';
 import {
   DeleteImageResponse,
   Image,
-  PostImageResponse,
+  PostImageResponse
 } from '../models/image.model';
 import { AngularEditorConfig, UploadResponse } from '@kolkov/angular-editor';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ImageService {
   apiUrl = `${environment.apiUrl}/image`;
@@ -34,30 +34,30 @@ export class ImageService {
     customClasses: [
       {
         name: 'quote',
-        class: 'quote',
+        class: 'quote'
       },
       {
         name: 'redText',
-        class: 'redText',
+        class: 'redText'
       },
       {
         name: 'titleText',
         class: 'titleText',
-        tag: 'h1',
-      },
+        tag: 'h1'
+      }
     ],
     uploadWithCredentials: true,
     uploadUrl: `${this.apiUrl}`,
     upload: (file: File) => {
       return this.uploadImage(file);
-    },
+    }
   };
   constructor(private http: HttpClient) {}
 
   addImage(formData: FormData): Observable<Image> {
     return this.http
       .post<PostImageResponse>(`${this.apiUrl}`, formData, {
-        withCredentials: true,
+        withCredentials: true
       })
       .pipe(
         map((resp) => {
@@ -71,22 +71,22 @@ export class ImageService {
     formData.append('multipartFile', file);
     return this.http
       .post<PostImageResponse>(`${this.apiUrl}`, formData, {
-        observe: 'events',
+        observe: 'events'
       })
       .pipe(
         map((event) => {
           if (event instanceof HttpResponse) {
             const response: PostImageResponse = event.body!;
             const uploadResponse: UploadResponse = {
-              imageUrl: `${this.apiUrl}?uuid=${response.uuid}`,
+              imageUrl: `${this.apiUrl}?uuid=${response.uuid}`
             };
             return new HttpResponse<UploadResponse>({
               ...event,
               headers: event.headers,
               status: event.status,
               statusText: event.statusText,
-              url: event.url || undefined, // Ustawienie na undefined, jeśli url jest null
-              body: uploadResponse,
+              url: event.url || undefined,
+              body: uploadResponse
             });
           }
           return event;
@@ -98,7 +98,7 @@ export class ImageService {
     const params = new HttpParams().append('uuid', uuid);
     return this.http.delete<DeleteImageResponse>(`${this.apiUrl}`, {
       withCredentials: true,
-      params,
+      params
     });
   }
 }

@@ -11,7 +11,6 @@
       <div class="text-center">
         <p class="product-name">{{ product.name }}</p>
 
-        <!-- Wyświetlanie ceny w zależności od wartości discount -->
         <p>
           <ng-container *ngIf="product.discount; else normalPrice">
             <span class="old-price">{{ product.price | currency: 'zł' }}</span>

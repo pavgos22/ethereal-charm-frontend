@@ -1,43 +1,75 @@
-<form [formGroup]='registerForm' (ngSubmit)='onRegister()'>
-  <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Adres e-mail</mat-label>
-      <input matInput type='email' [formControl]='controls.email'>
-      <mat-error *ngIf='controls.email.invalid'>{{ getErrorMessage(controls.email) }}</mat-error>
-    </mat-form-field>
+<main>
+  <div class="box">
+    <div class="inner-box">
+      <div class="logo">
+        <a class="navbar-brand" href="#">Ethereal Charm</a>
+      </div>
+      <div class="forms-wrap">
+        <form [formGroup]='registerForm' (ngSubmit)='onRegister()' class="register-form">
+          <div class="heading">
+            <h2>Zarejestruj się</h2>
+            <h6>Masz już konto?</h6><br>
+            <a routerLink="/login" class="toggle">Zaloguj się</a>
+          </div>
+          <div class="actual-form">
+            <div class="form-input">
+              <input #inputFieldRef class="input-field" type="text" [formControl]="controls.email" required/>
+              <label>E-mail</label>
+            </div>
+            <div class="control-err">
+              <mat-error *ngIf="controls.email.invalid && submitted">
+                {{ getErrorMessage(controls.email) }}
+              </mat-error>
+            </div>
+            <div class="form-input">
+              <input #inputFieldRef class="input-field" type="text" [formControl]="controls.login" required/>
+              <label>Login</label>
+            </div>
+            <div class="control-err">
+              <mat-error *ngIf="controls.login.invalid && submitted">
+                {{ getErrorMessage(controls.login) }}
+              </mat-error>
+            </div>
+            <div class="form-input">
+              <input #inputFieldRef class="input-field" type="password" [formControl]="controls.password" required/>
+              <label>Hasło</label>
+            </div>
+            <div class="control-err">
+              <mat-error *ngIf="controls.password.invalid && submitted">
+                {{ getErrorMessage(controls.password) }}
+              </mat-error>
+            </div>
+            <div class="form-input">
+              <input #inputFieldRef class="input-field" type="password" [formControl]="controls.repeatedPassword" required/>
+              <label>Powtórz hasło</label>
+            </div>
+            <div class="control-err">
+              <mat-error *ngIf="controls.repeatedPassword.invalid && submitted">
+                {{ getErrorMessage(controls.repeatedPassword) }}
+              </mat-error>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="register-btn">
+              Zarejestruj się
+            </button>
+          </div>
+          <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert'
+               *ngIf='notMatchingPasswordsErr'>
+            {{ notMatchingPasswordsErr }}
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'
+                    (click)='notMatchingPasswordsErr = null'></button>
+          </div>
+          <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert'
+               *ngIf='errorMsg$ | async as error'>
+            {{ error }}
+          </div>
+          <div class='mt-2' *ngIf='loading$ | async'>
+            Rejestracja w toku...
+          </div>
+        </form>
+      </div>
+      <div class="side-photo"></div>
+    </div>
   </div>
-  <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Login</mat-label>
-      <input matInput [formControl]='controls.login'>
-      <mat-error *ngIf='controls.login.invalid'>{{ getErrorMessage(controls.login) }}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Hasło</mat-label>
-      <input type='password' matInput [formControl]='controls.password'>
-      <mat-error *ngIf='controls.password.invalid'>{{ getErrorMessage(controls.password) }}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Powtórz hasło</mat-label>
-      <input type='password' matInput [formControl]='controls.repeatedPassword'>
-      <mat-error *ngIf='controls.repeatedPassword.invalid'>{{ getErrorMessage(controls.repeatedPassword) }}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class='d-flex justify-content-end'>
-    <button mat-raised-button color='primary' [disabled]='registerForm.invalid'>Zarejestruj się</button>
-  </div>
-  <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='notMatchingPasswordsErr'>
-    {{ notMatchingPasswordsErr}}
-    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' (click)='notMatchingPasswordsErr = null'></button>
-  </div>
-  <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMsg$ | async as error'>
-    {{ error }}
-  </div>
-  <div class='mt-2' *ngIf='loading$ | async'>
-    Aktualnie trwa zapytanie HTTP...
-  </div>
-</form>
+</main>

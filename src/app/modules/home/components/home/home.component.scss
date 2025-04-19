@@ -1,99 +1,220 @@
+// ===============================
+// Hero section
+// ===============================
 .home-container {
   margin: 0;
   padding: 0;
+
+  .hero-image {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+
+    // Use your hero image as a background, pinned in place
+    background: url("/assets/img/slider/front3.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    .overlay {
+      position: absolute;
+      inset: 0; // top: 0; right: 0; bottom: 0; left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 2;
+      pointer-events: none;
+
+      .overlay-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        pointer-events: auto; // Make children clickable (the button)
+
+        .overlay-heading {
+          font-size: 5rem;
+          font-family: "Cormorant Garamond", serif;
+          font-weight: 300 !important;
+          color: #fefefe;
+          margin-bottom: 3rem;
+          text-shadow: 2px 2px 8px rgba(0, 0, 0, 1.2);
+        }
+
+        .overlay-subheading {
+          font-size: 1.2rem;
+          font-family: "Cormorant Garamond", serif;
+          color: #4a3a3a;
+          margin-bottom: 2rem;
+          text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+  }
 }
 
-.hero-image {
-  height: 75vh;
+// ===============================
+// Button
+// ===============================
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 250px;
+  padding: 0 20px;
+  font-size: 1rem;
+  font-family: "Lexend Peta", sans-serif;
+  font-weight: 300;
+  text-shadow: 4px 4px 6px rgba(30, 30, 30, 1);
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  background: none;
+  border: none;
+
+  &.btn-one {
+    transition: all 0.3s;
+
+    span {
+      transition: all 0.3s;
+      z-index: 2;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0;
+      transition: all 0.3s;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      transform: scale(0.1, 1);
+    }
+
+    &:hover span {
+      letter-spacing: 2px;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      transition: all 0.3s;
+      background-color: rgba(247, 243, 242, 0.5);
+    }
+
+    &:hover::after {
+      opacity: 0;
+      transform: scale(0.1, 1);
+    }
+  }
+}
+
+// Global link styling
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+// ===============================
+// Info section
+// ===============================
+.info-section {
+  background-color: #fff;
+  padding: 3rem 0;
+
+  .info-icon {
+    color: #b3a3a3;
+  }
+
+  .info-title {
+    font-family: "Poiret One", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2f2f2f;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1rem;
+    color: #6c6c6c;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.categories {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 1200px) {
+  .categories {
+    padding-left: 300px;
+    padding-right: 300px;
+  }
+}
+
+.title-section hr {
+  width: 40%;
+  border: 1px solid #2f2f2f;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-hr {
+  width: 30% !important;
+}
+
+.title-section h1 {
+  font-family: "Poiret One", sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.product-item {
+  position: relative;
   overflow: hidden;
 
   img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  z-index: 2;
-}
-
-.overlay-heading {
-  font-size: 4rem;
-  font-family: "Cormorant Garamond", serif !important;
-  font-weight: 600 !important;
-  color: #fefefe;
-  margin-bottom: 3rem;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 1.2);
-}
-
-.overlay-subheading {
-  font-size: 1.2rem;
-  font-family: "Cormorant Garamond", serif;
-  color: #4a3a3a;
-  margin-bottom: 2rem;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
-}
-
-
-.overlay-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-
-  .btn {
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    font-size: 1rem;
-    text-decoration: none;
-    color: #fff;
-    font-family: "Lexend Peta", serif;
-    transition: all 0.3s ease-in-out;
-
-    &.btn-primary {
-      background-color: #c0a5a5;
-      border: 1px solid #c0a5a5;
-
-      &:hover {
-        background-color: #f9ecee;
-        border: 1px solid #f9ecee;
-        color: #c0a5a5;
-      }
-    }
-
-    &.btn-secondary {
-      background-color: #b3a3a3;
-      border: 1px solid #b3a3a3;
-
-      &:hover {
-        background-color: #f9ecee;
-        border: 1px solid #f9ecee;
-        color: #b3a3a3;
-      }
-    }
+    height: auto;
   }
 
-  a {
-    border: #aaa 1px solid;
-    transition: all 0.3s ease-in-out;
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
 
-    &:hover {
-      background-color: #aaa;
-      color: #fff;
+    .overlay-content {
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
     }
   }
 }
+
 
 
 

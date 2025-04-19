@@ -1,8 +1,10 @@
-<h2 mat-dialog-title>Potwierdzenie usunięcia konta</h2>
-<mat-dialog-content>
-  <p>Czy na pewno chcesz usunąć swoje konto? Ta akcja jest nieodwracalna.</p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Nie</button>
-  <button mat-button color="warn" [mat-dialog-close]="true">Tak</button>
-</mat-dialog-actions>
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Potwierdzenie usunięcia konta</h2>
+  <div mat-dialog-content class="dialog-content">
+    <p>Czy na pewno chcesz usunąć swoje konto? Ta akcja jest nieodwracalna.</p>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button class="btn btn-primary" (click)="onCancel()">Nie</button>
+    <button class="btn btn-danger" (click)="onConfirm()">Tak</button>
+  </div>
+</div>

@@ -19,10 +19,8 @@ export class HeaderComponent implements OnInit {
   user$: Observable<User | null> = this.store.select(selectAuthUser);
   cartTotalCount$: BehaviorSubject<number> = this.cartService.totalCount$;
 
-  categories: Category[] = [
-    // { name: 'meble', shortId: 12345678 },
-    // { name: 'kuchenne', shortId: 22345678 }
-  ];
+  categories$: Observable<Category[]> =
+    this.categoriesService.categories.asObservable();
 
   constructor(
     private store: Store<AppState>,
@@ -32,11 +30,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe({
-      next: (categories) => {
-        this.categories = [...categories];
-      }
-    });
+    this.categoriesService.getCategories().subscribe();
   }
 
   logout() {

@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Category, PostCategory } from '../models/categories.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CategoriesService {
   private apiUrl = `${environment.apiUrl}/category`;
@@ -16,6 +16,7 @@ export class CategoriesService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}`).pipe(
       tap((categories) => {
+        console.log('Fetched categories from backend:', categories);
         this.categories.next(categories);
       })
     );
@@ -28,7 +29,7 @@ export class CategoriesService {
       `${this.apiUrl}`,
       body,
       {
-        withCredentials: true,
+        withCredentials: true
       }
     );
   }

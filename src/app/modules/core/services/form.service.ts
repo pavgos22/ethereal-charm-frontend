@@ -207,30 +207,30 @@ export class FormService {
 
   getErrorMessage(control: FormControl): string {
     if (control.hasError('required')) {
-      return 'Ta kontrolka jest wymagana.';
+      return 'To pole jest wymagane';
     }
 
     if (
       control.hasError('pattern') &&
       control.errors?.['pattern']?.['requiredPattern'] === '/^\\d{2}-\\d{3}$/'
     ) {
-      return 'Podano kod pocztowy w niepoprawnym formacie.';
+      return 'Podano kod pocztowy w niepoprawnym formacie';
     }
 
     if (control.hasError('minlength')) {
-      return `Minimalna ilość znaków: ${control.errors?.['minlength']?.requiredLength}.`;
+      return `Minimalna ilość znaków: ${control.errors?.['minlength']?.requiredLength}`;
     }
 
     if (control.hasError('maxlength')) {
-      return `Maksymalna ilość znaków: ${control.errors?.['maxlength']?.requiredLength}.`;
+      return `Maksymalna ilość znaków: ${control.errors?.['maxlength']?.requiredLength}`;
     }
 
     if (control.hasError('email')) {
-      return `Niepoprawny adres e-mail.`;
+      return `Niepoprawny adres e-mail`;
     }
 
     if (control.hasError('passwordsNotEqual')) {
-      return 'Hasła muszą być takie same.';
+      return 'Hasła muszą być takie same';
     }
     return '';
   }

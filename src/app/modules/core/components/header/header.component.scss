@@ -68,6 +68,15 @@
   }
 }
 
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+.nav-item.dropdown:hover > .nav-link {
+  color: #a18f8f;
+}
+
 .display-initial {
   display: initial;
 
@@ -101,8 +110,8 @@
   transform: scale(0.9);
 }
 
-.nav-link.dropdown-toggle {
-  border: 0 !important;
+.custom-navbar .nav-link.dropdown-toggle::after {
+  content: none !important;
 }
 
 .navbar-nav {

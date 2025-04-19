@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormService } from '../../../core/services/form.service';
 import { ProfileService } from '../../../core/services/profile-service.service';
@@ -9,58 +17,61 @@ import { NotifierService } from 'angular-notifier';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
-  profileForm: FormGroup;
+export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
+  profileForm: FormGroup = this.formService.initProfileForm();
   errorMsg: string | null = null;
+  submitted = false;
+
+  @ViewChildren('inputFieldRef', { read: ElementRef })
+  private inputs!: QueryList<ElementRef<HTMLInputElement>>;
+  private listeners: (() => void)[] = [];
 
   constructor(
     private formService: FormService,
     private profileService: ProfileService,
-    private notifierService: NotifierService
-  ) {
-    this.profileForm = this.formService.initProfileForm();
-  }
+    private notifier: NotifierService
+  ) {}
 
   get controls() {
-    return this.profileForm.controls as {
-      [key: string]: FormControl;
-    };
+    return this.profileForm.controls as { [k: string]: FormControl };
   }
 
   ngOnInit(): void {
     this.profileService.getUserProfile().subscribe({
-      next: (userData) => {
-        console.log('Fetched user data:', userData);
-
-        this.profileForm.patchValue({
-          firstName: userData.firstName || '',
-          lastName: userData.lastName || '',
-          email: userData.email || '',
-          phone: userData.phone || '',
-          city: userData.city || '',
-          street: userData.street || '',
-          number: userData.number || '',
-          postCode: userData.postCode || '',
-          company: userData.company || false,
-          companyName: userData.company ? userData.companyName || '' : '',
-          nip: userData.company ? userData.nip || '' : ''
-        });
-
-        this.toggleCompanyFields(userData.company || false);
+      next: (d) => {
+        this.profileForm.patchValue(d || {});
+        this.toggleCompanyFields(!!d?.company);
       },
-      error: (err) => {
-        this.errorMsg = 'Nie udało się pobrać danych użytkownika.';
-        console.error('Error fetching user profile:', err);
-      }
+      error: () => (this.errorMsg = 'Nie udało się pobrać danych użytkownika')
     });
 
-    this.controls['company'].valueChanges.subscribe((company) => {
-      this.toggleCompanyFields(company);
+    this.controls['company'].valueChanges.subscribe((v) =>
+      this.toggleCompanyFields(v)
+    );
+  }
+
+  ngAfterViewInit(): void {
+    this.inputs.forEach((el) => {
+      const n = el.nativeElement;
+      const f = () => n.classList.add('active');
+      const b = () => {
+        if (!n.value) n.classList.remove('active');
+      };
+      n.addEventListener('focus', f);
+      n.addEventListener('blur', b);
+      this.listeners.push(() => {
+        n.removeEventListener('focus', f);
+        n.removeEventListener('blur', b);
+      });
     });
   }
 
-  private toggleCompanyFields(company: boolean): void {
-    if (company) {
+  ngOnDestroy(): void {
+    this.listeners.forEach((off) => off());
+  }
+
+  private toggleCompanyFields(c: boolean): void {
+    if (c) {
       this.controls['companyName'].enable();
       this.controls['nip'].enable();
     } else {
@@ -71,45 +82,20 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  getErrorMessage(control: any): string {
-    return this.formService.getErrorMessage(control);
+  getErrorMessage(ctrl: FormControl): string {
+    return this.formService.getErrorMessage(ctrl);
   }
 
   onSubmit(): void {
-    if (this.profileForm.valid) {
-      const profileDetails = this.profileForm.value;
+    this.submitted = true;
+    if (this.profileForm.invalid) return;
 
-      /* Object.keys(this.profileForm.controls).forEach((key) => {
-         console.log(
-           `Control: ${key}, Value: ${this.profileForm.get(key)?.value}, Valid: ${this.profileForm.get(key)?.valid}`
-         );
-       }); */
-
-      console.log('Profile details being sent:', profileDetails);
-
-      this.profileService.updateShippingDetails(profileDetails).subscribe({
-        next: () => {
-          this.notifierService.notify(
-            'success',
-            'Profil zaktualizowany pomyślnie.'
-          );
-          console.log('Profile updated successfully.');
-        },
-        error: (err) => {
-          this.errorMsg = 'Nie udało się zaktualizować profilu.';
-          console.error('Error updating profile:', err);
-        }
+    this.profileService
+      .updateShippingDetails(this.profileForm.value)
+      .subscribe({
+        next: () =>
+          this.notifier.notify('success', 'Profil zaktualizowany pomyślnie.'),
+        error: () => (this.errorMsg = 'Nie udało się zaktualizować profilu.')
       });
-    } else {
-      console.warn('Formularz jest nieprawidłowy.');
-      Object.keys(this.profileForm.controls).forEach((key) => {
-        const control = this.profileForm.get(key);
-        if (control && control.invalid) {
-          console.warn(
-            `Invalid Control: ${key}, Errors: ${JSON.stringify(control.errors)}`
-          );
-        }
-      });
-    }
   }
 }
