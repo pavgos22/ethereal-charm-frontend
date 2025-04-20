@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { PriorityEditDialogComponent } from '../priority-edit-dialog/priority-edit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CartService } from '../../../../core/services/cart.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-product',
@@ -28,12 +30,40 @@ export class ProductComponent implements OnInit {
     private favouriteService: FavouriteService,
     private authService: AuthService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private cartService: CartService,
+    private notifierService: NotifierService
   ) {}
 
   ngOnInit() {
     this.favouriteService.favourites$.subscribe((favourites) => {
       this.isFavourite = favourites.some((fav) => fav.uid === this.product.uid);
+    });
+  }
+
+  previewProduct(event: Event) {
+    event.stopPropagation();
+    this.router.navigateByUrl(this.getProductDetailsUrl());
+  }
+
+  addToCart(event: Event) {
+    event.stopPropagation();
+
+    const body = {
+      product: this.product.uid,
+      quantity: 1
+    };
+
+    this.cartService.addProductToCart(body).subscribe({
+      next: () => {
+        this.notifierService.notify('success', 'Produkt dodany do koszyka!');
+      },
+      error: () => {
+        this.notifierService.notify(
+          'warning',
+          'Nie udało się dodać produktu do koszyka.'
+        );
+      }
     });
   }
 

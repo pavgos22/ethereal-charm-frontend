@@ -1,125 +1,184 @@
-.card {
+.product-item {
   position: relative;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: white;
   overflow: hidden;
-  transition: box-shadow 0.3s;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 
-  &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  figure {
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    height: 200px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      border: 4px solid #8c6464;
+      top: 15px;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      z-index: 1;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      transform: scale(1.05);
+    }
+  }
+
+  &:hover figure::before {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  &:hover figure img {
+    transform: scale(1.15);
+  }
+
+  .product-content {
+    padding: 1rem 0;
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #000;
+
+      &:hover {
+        color: #8c6464;
+      }
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    .original-price {
+      text-decoration: line-through;
+      color: #a0a0a0;
+      font-size: 1rem;
+    }
+
+    .discounted-price, {
+      font-size: 1.1rem;
+      color: green;
+      font-weight: bold;
+    }
+
+    .card-price {
+      font-size: 1.1rem;
+      color: #a0a0a0;
+      font-weight: bold;
+    }
+  }
+
+  .favourite-icon,
+  .edit-icon,
+  .priority-icon {
+    position: absolute;
+    font-size: 1.4rem;
+    color: #ccc;
+    transition: color 0.3s ease;
+    z-index: 2;
+
+    &:hover {
+      color: #8c6464;
+    }
   }
 
   .favourite-icon {
-    position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 1.5rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.3s;
+
+    &:hover {
+      color: red;
+    }
 
     &.active {
       color: red;
     }
-
-    &:hover {
-      color: rgba(255, 0, 0, 0.8);
-    }
   }
 
   .edit-icon {
-    position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 1.5rem;
-    color: #aaa;
-    cursor: pointer;
-    transition: color 0.3s, transform 0.3s;
-
-    .regular-icon,
-    .solid-icon {
-      transition: transform 0.3s;
-    }
-
-    .solid-icon {
-      display: none;
-    }
-
-    &:hover {
-      color: #666;
-    }
-
-    &:hover .regular-icon {
-      display: none;
-    }
-
-    &:hover .solid-icon {
-      display: inline;
-    }
-
-    &:hover .solid-icon {
-      transform: scale(1.1);
-    }
   }
 
   .priority-icon {
-    position: absolute;
     top: 50px;
     left: 10px;
-    font-size: 1.5rem;
-    color: #aaa;
-    cursor: pointer;
-    transition: color 0.3s, transform 0.3s;
-
-    &:hover {
-      color: #666;
-      transform: scale(1.1);
-    }
-  }
-
-  .card-img-top {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
-
-  .card-body {
-    padding: 10px;
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .card-text {
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .price-container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-
-      .original-price {
-        text-decoration: line-through;
-        color: #a0a0a0;
-        font-size: 1rem;
-      }
-
-      .discounted-price {
-        font-size: 1.1rem;
-        color: green;
-        font-weight: bold;
-      }
-
-      .card-price {
-        font-size: 1.1rem;
-        color: green;
-        font-weight: bold;
-      }
-    }
   }
 }
+
+.icons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  height: 40px;
+  position: relative;
+}
+
+.icon-box:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 2px;
+  background-color: #8c6464;
+  border-radius: 1px;
+}
+
+.icon-box svg {
+  color: #444;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.icon-box:hover svg {
+  color: #8c6464;
+  transform: scale(0.9);
+}
+
+.icon-tabler-heart {
+  transition: stroke 0.3s ease, fill 0.3s ease, transform 0.2s ease;
+}
+
+.icon-box:hover .icon-tabler-heart {
+  stroke: #bf0404;
+  transform: scale(0.9);
+}
+
+.icon-box:hover .favourite-filled {
+  stroke: none !important;
+}
+
+

@@ -8,3 +8,32 @@
   display: flex;
   gap: 0.8rem;
 }
+
+.product-wrapper {
+  min-height: 100vh;
+  background: url('/assets/img/forms/bg/so-white.png') repeat;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Poiret One', sans-serif;
+
+  @media (min-width: 768px) {
+    padding: 2rem 4rem;
+  }
+}
+
+.product-container {
+  width: 100%;
+  max-width: 1200px;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 40px 30px -20px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1.25rem;
+  }
+}

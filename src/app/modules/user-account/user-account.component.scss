@@ -56,6 +56,20 @@ main {
   flex-wrap: wrap;
 }
 
+.nav-item a {
+  color: #888888;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #8c6464;
+  }
+
+  &.active {
+    color: #8c6464;
+    font-weight: 600;
+  }
+}
+
 .content-wrapper {
   width: 100%;
 }

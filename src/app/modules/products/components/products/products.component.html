@@ -1,5 +1,6 @@
-<section>
-  <div class='autocomplete-search'>
+<main class="product-wrapper">
+  <div class="product-container">
+    <div class="autocomplete-search">
     <mat-form-field>
       <mat-label>Wyszukaj produkty</mat-label>
       <input
@@ -39,14 +40,16 @@
       </button>
     </div>
   </div>
-  <div class="products-list">
-    <app-product
-      *ngFor="let product of products"
-      [product]="product"
-      (editProduct)="openEditDialog($event)">
-    </app-product>
-  </div>
+
+    <div class="products-list">
+      <app-product
+        *ngFor="let product of products"
+        [product]="product"
+        (editProduct)="openEditDialog($event)">
+      </app-product>
+    </div>
   <mat-paginator *ngIf='!errorMessage' [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons>
   </mat-paginator>
   <app-alert *ngIf='errorMessage' [alertType]='"warning"' [message]='errorMessage'></app-alert>
-</section>
+  </div>
+</main>
