@@ -1,55 +1,51 @@
 <main class="product-wrapper">
   <div class="product-container">
     <div class="autocomplete-search">
-    <mat-form-field>
-      <mat-label>Wyszukaj produkty</mat-label>
-      <input
-      type='text'
-      matInput
-      [formControl]='searchControl'
-      [matAutocomplete]='auto'>
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor='let option of filteredOptions | async' [value]='option.name'>
-          {{option.name}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <div class='searched-params'>
-      <mat-form-field>
-        <mat-label>Sortuj po</mat-label>
-        <mat-select [formControl]='sortControl'>
-          <mat-option value=''>-</mat-option>
-          <mat-option value='price'>Cenie</mat-option>
-          <mat-option value='category'>Kategorii</mat-option>
-          <mat-option value='name'>Nazwie</mat-option>
-          <mat-option value='data'>Dacie dodania</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Sortuj</mat-label>
-        <mat-select [formControl]='orderControl'>
-          <mat-option value=''>-</mat-option>
-          <mat-option value='asc'>rosnąco</mat-option>
-          <mat-option value='desc'>malejąco</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class='d-flex justify-content-end my-2'>
-      <button mat-raised-button color='primary' (click)='searchProducts()'>
-        Wyszukaj
-      </button>
-    </div>
-  </div>
+      <form class="search-form">
+        <div class="form-input">
+          <input type="text" class="input-field" [formControl]="searchControl" required/>
+          <label>Wyszukaj produkty</label>
+        </div>
 
-    <div class="products-list">
+        <div class="searched-params">
+          <div class="form-input">
+            <select class="input-field" [formControl]="sortControl" required>
+              <option value="">Sortuj po</option>
+              <option value="price">Cenie</option>
+              <option value="category">Kategorii</option>
+              <option value="name">Nazwie</option>
+              <option value="data">Dacie dodania</option>
+            </select>
+            <label>Sortuj po</label>
+          </div>
+
+          <div class="form-input">
+            <select class="input-field" [formControl]="orderControl" required>
+              <option value="">Sortuj</option>
+              <option value="asc">rosnąco</option>
+              <option value="desc">malejąco</option>
+            </select>
+            <label>Sortuj</label>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3 mb-5">
+          <button class="sign-btn" type="button" (click)="searchProducts()">Wyszukaj</button>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="products-list mb-5">
       <app-product
         *ngFor="let product of products"
         [product]="product"
         (editProduct)="openEditDialog($event)">
       </app-product>
     </div>
-  <mat-paginator *ngIf='!errorMessage' [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons>
-  </mat-paginator>
-  <app-alert *ngIf='errorMessage' [alertType]='"warning"' [message]='errorMessage'></app-alert>
+    <div class="paginator">
+      <mat-paginator *ngIf='!errorMessage' [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons></mat-paginator>
+    </div>
+    <app-alert *ngIf='errorMessage' [alertType]='"warning"' [message]='errorMessage'></app-alert>
   </div>
 </main>

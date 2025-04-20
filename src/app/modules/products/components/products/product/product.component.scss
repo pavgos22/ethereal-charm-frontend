@@ -5,6 +5,7 @@
   text-align: center;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 
   figure {
     overflow: hidden;
@@ -129,6 +130,10 @@
   }
 }
 
+.product-item:hover {
+  box-shadow: 0 8px 20px rgba(192, 165, 165, 0.6);
+}
+
 .icons-wrapper {
   display: flex;
   align-items: center;
@@ -180,5 +185,4 @@
 .icon-box:hover .favourite-filled {
   stroke: none !important;
 }
-
 

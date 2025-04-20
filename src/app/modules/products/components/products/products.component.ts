@@ -3,7 +3,8 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ProductsService } from '../../../core/services/products.service';
 import { PrimitiveProduct } from '../../../core/models/product.model';
@@ -27,6 +28,7 @@ import { PriorityEditDialogComponent } from './priority-edit-dialog/priority-edi
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
+  //encapsulation: ViewEncapsulation.None
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   products: PrimitiveProduct[] = [];
@@ -63,12 +65,26 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // this.productsService.getProducts().subscribe({
-    //   next: ({ products, totalCount }) => {
-    //     this.products = [...products];
-    //     this.totalCount = totalCount;
-    //   },
-    // });
+    const inputs = document.querySelectorAll<
+      HTMLInputElement | HTMLSelectElement
+    >('.input-field');
+
+    inputs.forEach((inp) => {
+      const setActive = () => {
+        if (inp.value) {
+          inp.classList.add('active');
+        } else {
+          inp.classList.remove('active');
+        }
+      };
+
+      setActive();
+
+      inp.addEventListener('focus', () => inp.classList.add('active'));
+
+      inp.addEventListener('blur', () => setActive());
+    });
+
     this.route.queryParamMap
       .pipe(
         switchMap((queryMap) => {
