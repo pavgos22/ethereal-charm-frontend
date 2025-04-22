@@ -69,7 +69,7 @@
 </section>
 
 <section class="categories">
-  <div class="container">
+  <div class="container-fluid">
     <div class="title-section mb-5">
       <hr class="top-hr"><h1>Kategorie</h1><hr>
     </div>
@@ -115,6 +115,27 @@
     </div>
   </div>
 </section>
+
+<div class="discount-image my-5"></div>
+
+<section class="discounted-products">
+  <div class="container-fluid">
+    <div class="discount-section my-5">
+      <h1>Przecenione produkty</h1>
+    </div>
+    <div class="home-product-wrapper">
+      <div class="product-container">
+        <div class="products-list mb-5">
+          <app-product
+            *ngFor="let product of products"
+            [product]="product">
+          </app-product>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="py-5"></div>
 
 

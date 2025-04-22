@@ -7,11 +7,12 @@ import { ErrorHandlingInterceptor } from './interceptors/error-handling.intercep
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorCustomIntl } from './material/mat-paginator-custom-intl';
 import { CookieNotifyComponent } from './components/cookie-notify/cookie-notify.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [HeaderComponent, CookieNotifyComponent],
+  declarations: [HeaderComponent, CookieNotifyComponent, FooterComponent],
   imports: [SharedModule, HttpClientModule, RouterLink, RouterLinkActive],
-  exports: [HeaderComponent, CookieNotifyComponent],
+  exports: [HeaderComponent, CookieNotifyComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

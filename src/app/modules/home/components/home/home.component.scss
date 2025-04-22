@@ -7,9 +7,8 @@
     height: 75vh;
     overflow: hidden;
 
-    background: url("/assets/img/slider/front3.jpg") no-repeat center center;
     background-size: cover;
-    background-attachment: fixed;
+    background: url("/assets/img/slider/front3.jpg") no-repeat fixed center center;
 
     .overlay {
       position: absolute;
@@ -47,6 +46,80 @@
       }
     }
   }
+}
+
+.discount-image {
+  position: relative;
+  height: 25vh;
+  overflow: hidden;
+  display: none;
+
+  background-size: cover;
+  background: url("/assets/img/slider/front6.jpg") no-repeat fixed center center;
+  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.18);
+}
+
+.discount-section {
+  padding-top: 10px;
+  padding-left: 10px;
+  border-left: #8c6464 3px solid;
+}
+
+.discount-section h1 {
+  font-size: 3rem;
+  padding-bottom: 10px;
+  font-family: "Poiret One", sans-serif;
+}
+
+.home-product-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-inline: 1rem;
+  font-family: 'Poiret One', sans-serif;
+
+  @media (min-width: 768px) {
+    padding: 2rem 4rem;
+  }
+}
+
+.discounted-products {
+  padding-inline: 20px;
+}
+
+@media (min-width: 1200px) {
+  .discounted-products { padding-inline: 2px; }
+}
+
+@media (min-width: 1400px) {
+  .discounted-products { padding-inline: 140px; }
+}
+
+@media (min-width: 1600px) {
+  .discounted-products { padding-inline: 240px; }
+}
+
+.discount-section {
+  margin-left: 80px;
+}
+
+.product-container {
+  width: 100%;
+  max-width: 1200px;
+  background: white;
+  box-shadow: 0 40px 30px -20px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1.25rem;
+  }
+}
+
+.products-list {
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 
@@ -145,16 +218,21 @@ a {
 }
 
 .categories {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-inline: 20px;
 }
 
 @media (min-width: 1200px) {
-  .categories {
-    padding-left: 300px;
-    padding-right: 300px;
-  }
+  .categories { padding-inline: 80px; }
 }
+
+@media (min-width: 1400px) {
+  .categories { padding-inline: 200px; }
+}
+
+@media (min-width: 1600px) {
+  .categories { padding-inline: 300px; }
+}
+
 
 .title-section hr {
   width: 40%;
@@ -180,6 +258,14 @@ a {
 .product-item {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
+
+  &:hover {
+    transform: scale(0.97);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    filter: brightness(.9);
+  }
 
   img {
     width: 100%;
