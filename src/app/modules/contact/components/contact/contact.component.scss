@@ -1,0 +1,98 @@
+.contact {
+  background-color: #fff;
+  min-height: 75vh;
+  padding: 4rem 2rem;
+  font-family: 'Poiret One', sans-serif;
+
+  .contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .col-lg-6 {
+    flex: 1 1 45%;
+  }
+
+  .map-wrapper {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    margin: 0;
+
+    iframe {
+      display: block;
+      border: none;
+    }
+  }
+
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #111111;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    input, textarea {
+      padding: 0.6rem;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  button {
+    align-self: flex-start;
+    background-color: #151111;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #8c6464;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}

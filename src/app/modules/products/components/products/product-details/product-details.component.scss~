@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  background-color: #fff;
+  font-family: 'Poiret One', sans-serif;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.col-md-6 {
+  flex: 1 1 45%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.product-name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.old-price {
+  text-decoration: line-through;
+  margin-right: 0.5rem;
+  color: #999;
+  font-size: 1.2rem;
+}
+
+.discounted-price {
+  font-weight: bold;
+  color: #1c8c3c;
+  font-size: 1.5rem;
+}
+
+button {
+  background-color: #111;
+  color: #fff;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  padding: 0.7rem 2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #c0a5a5;
+  }
+}
+
+.product-desc {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.html-text {
+  padding: 1rem 0;
+  color: #444;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.table {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.75rem 1rem;
+}
+
+.product-parameter-key {
+  font-weight: 600;
+  color: #222;
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    flex: 1 1 100%;
+  }
+
+  .product-name {
+    font-size: 1.5rem;
+  }
+
+  .discounted-price {
+    font-size: 1.2rem;
+  }
+
+  .product-desc {
+    font-size: 1.1rem;
+  }
+
+  .table {
+    font-size: 0.95rem;
+  }
+}

@@ -9,26 +9,20 @@
 
     <div class="product-content col-md-6 col-12">
       <h2 class="category">Kategoria</h2>
-      <h1 class="product-name">{{ product.name }}</h1>
+        <h1 class="product-name">{{ product.name }}</h1>
       <div class="shipping-info">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             class="icon icon-tabler icons-tabler-outline icon-tabler-truck">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
-          <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
-          <path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"/>
-        </svg>
-        <h3>
-          Wysyłka w 24 godziny!
-        </h3>
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-truck"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" /></svg>
+      <h3>
+        Wysyłka w 24 godziny!
+      </h3>
       </div>
       <hr>
       <div class="description">
         <p class="product-desc">Opis produktu</p>
         <div *ngIf="htmlContent" [innerHtml]="htmlContent" class="html-text"></div>
       </div>
-      <div class="price col-3">Cena<hr>
+      <div class="price col-3">
+        <hr>
         <p>
           <ng-container *ngIf="product.discount; else normalPrice">
             <span class="old-price">{{ product.price | currency: 'zł' }}</span>
@@ -39,14 +33,14 @@
           </ng-template>
         </p>
       </div>
-      <div class="d-flex justify-content-center">
-        <app-quantity-control [formControl]="quantityControl"></app-quantity-control>
-      </div>
-      <div class="d-flex justify-content-center my-2">
-        <button mat-raised-button color="primary" (click)="addToCart()">Dodaj do koszyka</button>
+        <div class="d-flex justify-content-center">
+          <app-quantity-control [formControl]="quantityControl"></app-quantity-control>
+        </div>
+        <div class="d-flex justify-content-center my-2">
+          <button mat-raised-button color="primary" (click)="addToCart()">Dodaj do koszyka</button>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="row" *ngIf="parameters">
     <div class="col-md-12 mt-3">
