@@ -77,24 +77,6 @@
   color: #a18f8f;
 }
 
-.display-initial {
-  display: initial;
-
-  .basket-quantity {
-    font: 500 11px roboto;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    top: -18px;
-    right: -14px;
-    background-color: #e97070;
-  }
-
-  .icon-height {
-    line-height: 30px;
-  }
-}
-
 .dropdown-menu-end {
   right: 0;
   left: auto;
@@ -122,10 +104,35 @@
     margin: -5px;
   }
 
-  .cart-icon,
+  .cart-icon {
+    position: relative;
+
+    .cart-quantity {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: #c0a5a5;
+      color: #fff;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      font-family: 'Poiret One', sans-serif;
+      margin-left: 0;
+    }
+  }
+
   .user-icon {
     margin-left: 0;
   }
+
 }
 
 

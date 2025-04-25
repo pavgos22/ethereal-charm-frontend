@@ -10,6 +10,7 @@ import { DeliveryFormComponent } from './components/create-order/delivery-form/d
 import { FormsModule } from '@angular/forms';
 import { CompanyFormComponent } from './components/create-order/company-form/company-form.component';
 import { InfoFormComponent } from './components/create-order/info-form/info-form.component';
+import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { InfoFormComponent } from './components/create-order/info-form/info-form
     AddressFormComponent,
     DeliveryFormComponent,
     CompanyFormComponent,
-    InfoFormComponent
+    InfoFormComponent,
+    EmptyCartComponent
   ],
   imports: [SharedModule, CartRoutingModule, FormsModule]
 })

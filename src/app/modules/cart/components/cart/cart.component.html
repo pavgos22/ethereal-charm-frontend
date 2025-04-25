@@ -1,22 +1,27 @@
-<div class='row' *ngIf='cartProducts.length === 0'>
-  <p>Aktualnie brak produktów w koszyku. Przejdź do listy produktów i dodaj coś do koszyka.</p>
-</div>
-
-<div class='row' *ngIf='cartProducts.length > 0'>
-  <div class='col-md-9'>
-    <div class='cart-product' *ngFor='let cartProduct of cartProducts'>
-      <app-cart-product (deleteProductUuid)='deleteProduct($event)' [cartProduct]='cartProduct'></app-cart-product>
-    </div>
+<main class="cart" [ngClass]='{ empty: cartProducts.length === 0 }'>
+  <div class="row" *ngIf='cartProducts.length === 0'>
+    <app-empty-cart></app-empty-cart>
   </div>
 
-  <div class='col-md-3'>
-    <div class='summary-wrapper'>
-      <h2 class='text-center summary-heading'>Podsumowanie koszyka:</h2>
-      <p class='text-center'>Koszt bez dostawy:</p>
-      <p class='text-center'>{{summaryPrice | currency: 'zł'}}</p>
-      <div class='d-flex justify-content-center'>
-        <button mat-raised-button color='primary' (click)='navigateToCreateOrder()'>Przejdź do zakupu</button>
+  <div class="cart-wrapper" *ngIf='cartProducts.length > 0'>
+    <div class="row" *ngIf='cartProducts.length > 0'>
+      <div class="cart-header"><h1>Koszyk</h1></div>
+      <div class="col-md-9">
+        <div class="cart-product my-3" *ngFor='let cartProduct of cartProducts'>
+          <app-cart-product (deleteProductUuid)='deleteProduct($event)' [cartProduct]='cartProduct'></app-cart-product>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="summary-wrapper mt-3">
+          <h2 class="text-center summary-heading">Podsumowanie koszyka:</h2>
+          <p class="text-center">Koszt bez dostawy:</p>
+          <p class="text-center">{{ summaryPrice | currency: 'zł' }}</p>
+          <div class="d-flex justify-content-center">
+            <button mat-raised-button class="custom-cart-btn" (click)='navigateToCreateOrder()'>Przejdź do zakupu</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</main>

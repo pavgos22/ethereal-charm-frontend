@@ -35,7 +35,7 @@
 
   <div class="row">
     <h2>Produkty w zamówieniu:</h2>
-    <div class="basket-product" *ngFor="let cartProduct of order.items">
+    <div class="cart-product" *ngFor="let cartProduct of order.items">
       <app-cart-product
         [cartView]="false"
         [cartProduct]="cartProduct"
