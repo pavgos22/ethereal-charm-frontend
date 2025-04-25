@@ -1,113 +1,160 @@
-:host {
-  display: block;
-  background-color: #fff;
-  font-family: 'Poiret One', sans-serif;
-  padding: 4rem 2rem;
-  min-height: 100vh;
+.product-details-wrapper {
+  padding: 95px 120px 80px 120px;
+  background: #fff;
+
+  @media (max-width: 1250px) {
+    padding: 95px 75px 70px 75px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 30px 40px 70px 40px;
+  }
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+.product-details-wrapper > .col-xl-6 {
+  padding: 25px;
 }
 
-.col-md-6 {
-  flex: 1 1 45%;
+.product-content h1 {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+  margin-bottom: 0.1rem;
 }
 
-.text-center {
-  text-align: center;
+.product-content h2 {
+  font-family: "Lexend Peta", sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.shipping-info svg {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.shipping-info h3 {
+  display: inline-block;
+  margin-left: 8px;
+  color: #9a9a9a;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }
 
 .product-name {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  color: #111;
-  font-family: 'Cormorant Garamond', serif;
+}
+
+.product-desc {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.table-cell {
+  width: 50%;
+}
+
+.product-parameter-key {
+  font-weight: 500;
+}
+
+.html-text {
+  overflow-wrap: break-word;
 }
 
 .old-price {
   text-decoration: line-through;
-  margin-right: 0.5rem;
-  color: #999;
-  font-size: 1.2rem;
+  margin-right: 0.8rem;
+  color: #888;
 }
 
 .discounted-price {
   font-weight: bold;
-  color: #1c8c3c;
-  font-size: 1.5rem;
+  color: green;
 }
 
-button {
-  background-color: #111;
-  color: #fff;
-  border-radius: 1rem;
-  font-size: 0.9rem;
-  padding: 0.7rem 2rem;
-  transition: all 0.3s ease;
+.description {
+  padding-bottom: 20px;
+}
+
+.price {
+  font-size: 1.2rem;
+}
+
+.price p {
+  display: block;
+  padding-left: 20px;
+}
+
+.price p:first-of-type {
+  margin-bottom: 0.4rem;
+}
+
+.price hr {
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.custom-cart-btn {
+  font-family: "Poiret One", sans-serif;
+  background-color: #a390a0 !important;
+  color: #fff !important;
+  transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: #c0a5a5;
+    background-color: #c0a5a5 !important;
   }
 }
 
-.product-desc {
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin-top: 2rem;
-  text-align: center;
-  color: #333;
-}
+.parameters {
+  padding: 0 300px 150px 300px;
+  background-color: white;
 
-.html-text {
-  padding: 1rem 0;
-  color: #444;
-  line-height: 1.6;
-  text-align: justify;
-}
-
-.table {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: #555;
-}
-
-.table td {
-  vertical-align: middle;
-  padding: 0.75rem 1rem;
-}
-
-.product-parameter-key {
-  font-weight: 600;
-  color: #222;
-}
-
-@media (max-width: 768px) {
-  .row {
-    flex-direction: column;
+  @media (max-width: 1200px) {
+    padding: 0 120px 75px 120px;
   }
 
-  .col-md-6 {
-    flex: 1 1 100%;
-  }
-
-  .product-name {
-    font-size: 1.5rem;
-  }
-
-  .discounted-price {
-    font-size: 1.2rem;
-  }
-
-  .product-desc {
-    font-size: 1.1rem;
-  }
-
-  .table {
-    font-size: 0.95rem;
+  @media (max-width: 768px) {
+    padding: 0 40px 75px 40px;
   }
 }
+
+.parameters h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+}
+
+.parameters-title {
+  border-left: 3px #8c6464 solid;
+  padding-left: 5px;
+}
+
+.q-control {
+  @media (max-width: 852px) {
+    margin-top: 20px;
+  }
+}
+
+.product-heading-desktop {
+  display: block;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+.product-heading-mobile {
+  display: none;
+
+  @media (max-width: 576px) {
+    display: block;
+    padding: 30px 40px 70px 40px;
+  }
+}
+
