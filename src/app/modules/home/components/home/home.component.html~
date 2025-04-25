@@ -6,9 +6,7 @@
         <h1 class="overlay-heading">Twoja codzienna dawka uroku</h1>
         <p class="overlay-subheading">Delikatna biżuteria, która podkreśla Twoją wyjątkowość.</p>
         <div class="btn btn-one">
-          <a [routerLink]="['/products']" [queryParams]="{ page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }">
-            <span>Zobacz kolekcję</span>
-          </a>
+          <a href="/products?page=1&limit=5&sort_by=priority&sort=desc"><span>Zobacz kolekcję</span></a>
         </div>
       </div>
     </div>

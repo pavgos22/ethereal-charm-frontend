@@ -24,7 +24,6 @@
     &::before {
       content: '';
       position: absolute;
-      border: 3px solid #8c6464;
       top: 15px;
       bottom: 15px;
       left: 15px;

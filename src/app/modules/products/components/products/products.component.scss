@@ -1,8 +1,24 @@
 .products-list {
   display: grid;
   gap: .8rem;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 576px) and (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
+
 
 .searched-params {
   display: flex;

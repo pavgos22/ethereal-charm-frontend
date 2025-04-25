@@ -125,11 +125,10 @@
     </div>
     <div class="home-product-wrapper">
       <div class="product-container">
-        <div class="products-list mb-5">
-          <app-product
-            *ngFor="let product of products"
-            [product]="product">
-          </app-product>
+        <div class="products-list row mb-5">
+          <div class="col-12 col-sm-6 col-xl-4" *ngFor="let product of products">
+            <app-product [product]="product"></app-product>
+          </div>
         </div>
       </div>
     </div>

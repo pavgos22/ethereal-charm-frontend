@@ -117,9 +117,7 @@
 }
 
 .products-list {
-  display: grid;
-  gap: .8rem;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  row-gap: 1.2rem;
 }
 
 
