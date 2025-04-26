@@ -1,31 +1,23 @@
 <h3>Wpisz adres dostawy:</h3>
-<form [formGroup]='addressForm'>
+<form [formGroup]='addressForm' class="form-grid">
   <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Miasto/Miejscowość</mat-label>
-      <input matInput [formControl]='controls.city'>
-      <mat-error *ngIf='controls.city.invalid'>{{ getErrorMessage(controls.city) }}</mat-error>
-    </mat-form-field>
+    <input #inputField class="input-field" type="text" [formControl]='controls.city' placeholder=" " required>
+    <label>Miasto</label>
+    <mat-error *ngIf='controls.city.invalid && submitted'>{{ getErrorMessage(controls.city) }}</mat-error>
   </div>
   <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Ulica</mat-label>
-      <input matInput [formControl]='controls.street'>
-      <mat-error *ngIf='controls.street.invalid'>{{ getErrorMessage(controls.street) }}</mat-error>
-    </mat-form-field>
+    <input #inputField class="input-field" type="text" [formControl]='controls.street' placeholder=" " required>
+    <label>Ulica</label>
+    <mat-error *ngIf='controls.street.invalid && submitted'>{{ getErrorMessage(controls.street) }}</mat-error>
   </div>
   <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Numer domu/mieszkania</mat-label>
-      <input matInput [formControl]='controls.number'>
-      <mat-error *ngIf='controls.number.invalid'>{{ getErrorMessage(controls.number) }}</mat-error>
-    </mat-form-field>
+    <input #inputField class="input-field" type="text" [formControl]='controls.number' placeholder=" " required>
+    <label>Numer domu/mieszkania</label>
+    <mat-error *ngIf='controls.number.invalid && submitted'>{{ getErrorMessage(controls.number) }}</mat-error>
   </div>
   <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Kod pocztowy</mat-label>
-      <input matInput [formControl]='controls.postCode'>
-      <mat-error *ngIf='controls.postCode.invalid'>{{ getErrorMessage(controls.postCode) }}</mat-error>
-    </mat-form-field>
+    <input #inputField class="input-field" type="text" [formControl]='controls.postCode' placeholder=" " required>
+    <label>Kod pocztowy</label>
+    <mat-error *ngIf='controls.postCode.invalid && submitted'>{{ getErrorMessage(controls.postCode) }}</mat-error>
   </div>
 </form>

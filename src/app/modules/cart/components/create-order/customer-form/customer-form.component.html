@@ -1,33 +1,23 @@
 <h3>Wpisz swoje dane:</h3>
-<form [formGroup]='customerForm'>
+<form [formGroup]='customerForm' class="form-grid">
   <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Imię</mat-label>
-      <input matInput [formControl]='controls.firstName'>
-      <mat-error *ngIf='controls.firstName.invalid'>{{ getErrorMessage(controls.firstName) }}</mat-error>
-    </mat-form-field>
+    <input #inputField class="input-field" type="text" [formControl]='controls.firstName' placeholder=" " required>
+    <label>Imię</label>
+    <mat-error *ngIf='controls.firstName.invalid && submitted'>{{ getErrorMessage(controls.firstName) }}</mat-error>
   </div>
   <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Nazwisko</mat-label>
-      <input matInput [formControl]='controls.lastName'>
-      <mat-error *ngIf='controls.lastName.invalid'>{{ getErrorMessage(controls.lastName) }}</mat-error>
-    </mat-form-field>
+    <input #inputField class="input-field" type="text" [formControl]='controls.lastName' placeholder=" " required>
+    <label>Nazwisko</label>
+    <mat-error *ngIf='controls.lastName.invalid && submitted'>{{ getErrorMessage(controls.lastName) }}</mat-error>
   </div>
   <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Email</mat-label>
-      <input matInput [formControl]='controls.email'>
-      <mat-error *ngIf='controls.email.invalid'>{{ getErrorMessage(controls.email) }}</mat-error>
-    </mat-form-field>
+    <input #inputField class="input-field" type="email" [formControl]='controls.email' placeholder=" " required>
+    <label>Email</label>
+    <mat-error *ngIf='controls.email.invalid && submitted'>{{ getErrorMessage(controls.email) }}</mat-error>
   </div>
   <div class='form-input'>
-<!--    <mat-form-field appearance='fill'>-->
-<!--      <mat-label>Numer telefonu</mat-label>-->
-<!--      <input type='password' matInput [formControl]='controls.phone'>-->
-<!--      <mat-error *ngIf='controls.phone.invalid'>{{ getErrorMessage(controls.phone) }}</mat-error>-->
-<!--    </mat-form-field>-->
-    <app-phone-control formControlName="phone"></app-phone-control>
-
+    <app-phone-control [formControl]="controls.phone"></app-phone-control>
+    <label></label>
+    <mat-error *ngIf='controls.phone.invalid && submitted'>{{ getErrorMessage(controls.phone) }}</mat-error>
   </div>
 </form>

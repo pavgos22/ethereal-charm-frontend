@@ -1,9 +1,20 @@
 <h3>Wybierz sposób dostawy:</h3>
-<form [formGroup]='deliveryForm'>
-  <mat-radio-group [formControl]='controls.uuid' class='delivery-radio-group'>
-    <mat-radio-button *ngFor='let deliveryType of deliveryTypes' [value]='deliveryType.uuid' class='delivery-radio-btn'>
-      {{deliveryType.name}} - {{deliveryType.price | currency: 'zł'}}
-    </mat-radio-button>
-  </mat-radio-group>
-  <app-alert *ngIf='errorMsg' [message]='errorMsg' [alertType]='"warning"'></app-alert>
+<form [formGroup]="deliveryForm">
+  <div *ngFor="let d of deliveryTypes; let i = index">
+
+    <label class="radio-wrapper-8 py-2">
+      <input  type="radio"
+              [id]="'delivery-' + i"
+              formControlName="uuid"
+              [value]="d.uuid">
+
+      <span>{{ d.name }} – {{ d.price | currency:'PLN':'symbol':'1.2-2':'pl' }}</span>
+    </label>
+
+  </div>
+
+  <app-alert *ngIf="errorMsg"
+             [message]="errorMsg"
+             [alertType]="'warning'">
+  </app-alert>
 </form>

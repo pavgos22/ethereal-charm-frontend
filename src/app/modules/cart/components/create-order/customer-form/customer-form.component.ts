@@ -9,6 +9,7 @@ import { FormService } from '../../../../core/services/form.service';
   styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent {
+  @Input() submitted = false;
   @Input() customerForm: FormGroup<CustomerForm> =
     this.formService.initCustomerForm();
 

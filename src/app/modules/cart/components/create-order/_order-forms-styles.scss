@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=WindSong:wght@400;500&display=swap');
+
+.form-input {
+  position: relative;
+  margin-bottom: 2.5rem;
+  height: 37px;
+
+  mat-error {
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    font-size: .75rem;
+    color: #f44336;
+  }
+}
+
+.input-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid #bbb;
+  font-size: .95rem;
+  transition: .4s;
+  color: #151111;
+  font-family: 'Poppins', sans-serif !important;
+  padding: 0;
+
+  &:focus, &.active {
+    border-bottom-color: #151111;
+  }
+}
+
+.input-field:not(:placeholder-shown) + label {
+  font-size: .75rem;
+  top: -2px;
+}
+
+label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .95rem;
+  color: #bbb;
+  pointer-events: none;
+  transition: .4s;
+}
+
+.input-field.active + label,
+.input-field:focus + label {
+  font-size: .75rem;
+  top: -2px;
+}
+
+
+label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .95rem;
+  color: #bbb;
+  pointer-events: none;
+  transition: .4s;
+}
+
+.input-field.active {
+  border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+  font-size: .75rem;
+  top: -2px;
+}
+
+.checkbox-wrapper-46 {
+  margin: 1.5rem 0;
+
+  input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+  }
+
+  .cbx {
+    margin: auto;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    pointer-events: auto;
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      transform: translate3d(0, 0, 0);
+
+      &:first-child {
+        position: relative;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        transform: scale(1);
+        vertical-align: middle;
+        border: 1px solid #9098A9;
+        transition: all 0.2s ease;
+
+        svg {
+          position: absolute;
+          top: 3px;
+          left: 2px;
+          fill: none;
+          stroke: #FFFFFF;
+          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-dasharray: 16px;
+          stroke-dashoffset: 16px;
+          transition: all 0.3s ease;
+          transition-delay: 0.1s;
+          transform: translate3d(0, 0, 0);
+        }
+
+        &:before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          background: #8c6464;
+          display: block;
+          transform: scale(0);
+          opacity: 1;
+          border-radius: 50%;
+        }
+      }
+
+      &:last-child {
+        padding-left: 8px;
+      }
+    }
+
+    &:hover span:first-child {
+      border-color: #8c6464;
+    }
+  }
+
+  .inp-cbx:checked + .cbx span:first-child {
+    background: #8c6464;
+    border-color: #8c6464;
+    animation: wave-46 0.4s ease;
+
+    svg {
+      stroke-dashoffset: 0;
+    }
+
+    &:before {
+      transform: scale(3.5);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+  }
+}
+
+@keyframes wave-46 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+.form-input.msg-input {
+  height: auto;
+  margin-bottom: 2.5rem;
+}
+
+textarea.input-field.msg-box {
+  position: static;
+  width: 100%;
+  min-height: 120px;
+  padding: .75rem 1rem;
+  border: 1px solid #bbb;
+  border-radius: .5rem;
+  background: #fff;
+
+  font: .95rem 'Poppins', sans-serif;
+  line-height: 1.4;
+  color: #151111;
+
+  resize: vertical;
+  transition: border-color .2s;
+
+  &:focus { border-color: #8c6464; }
+}
+
+textarea.input-field.msg-box::placeholder {
+  font-family: 'Poiret One', cursive;
+  color: #c4c4c4;
+  opacity: 1;
+}
+
+.save-shipping {
+  padding-bottom: 140px !important;
+  height: auto !important;
+}
+
+.form-actions {
+  margin-top: -80px !important;
+  padding: 0 30%;
+
+  @media (max-width: 768px) {
+    padding: 0 20%;
+  }
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  //font-weight: bold;
+  //text-transform: uppercase;
+}

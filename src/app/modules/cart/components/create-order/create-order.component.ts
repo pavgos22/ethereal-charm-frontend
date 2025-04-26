@@ -1,4 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  ElementRef
+} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
@@ -20,12 +28,16 @@ export class CreateOrderComponent implements OnInit, AfterViewInit {
   saveShipping = false;
   isAuthenticated = false;
   isCompany = false;
-
+  submitted = false;
+  private inputListeners: (() => void)[] = [];
   @ViewChild(CustomerFormComponent) customerFormComp!: CustomerFormComponent;
   @ViewChild(AddressFormComponent) addressFormComp!: AddressFormComponent;
   @ViewChild(DeliveryFormComponent) deliveryFormComp!: DeliveryFormComponent;
   @ViewChild(CompanyFormComponent) companyFormComp!: CompanyFormComponent;
   @ViewChild(InfoFormComponent) infoFormComp!: InfoFormComponent;
+  @ViewChildren('inputField') inputFields!: QueryList<
+    ElementRef<HTMLInputElement>
+  >;
 
   constructor(
     private location: Location,
@@ -52,6 +64,41 @@ export class CreateOrderComponent implements OnInit, AfterViewInit {
     if (this.isAuthenticated) {
       this.fetchUserProfile();
     }
+
+    this.setupInputListeners();
+  }
+
+  private setupInputListeners(): void {
+    this.inputFields.forEach((input) => {
+      const nativeEl = input.nativeElement;
+
+      const focusHandler = () => {
+        nativeEl.classList.add('active');
+      };
+
+      const blurHandler = () => {
+        if (!nativeEl.value) {
+          nativeEl.classList.remove('active');
+        }
+      };
+
+      if (nativeEl.value) {
+        nativeEl.classList.add('active');
+      }
+
+      nativeEl.addEventListener('focus', focusHandler);
+      nativeEl.addEventListener('blur', blurHandler);
+
+      this.inputListeners.push(() => {
+        nativeEl.removeEventListener('focus', focusHandler);
+        nativeEl.removeEventListener('blur', blurHandler);
+      });
+    });
+  }
+
+  private cleanupInputListeners(): void {
+    this.inputListeners.forEach((removeListener) => removeListener());
+    this.inputListeners = [];
   }
 
   checkIfUserIsLoggedIn(): void {
@@ -124,6 +171,7 @@ export class CreateOrderComponent implements OnInit, AfterViewInit {
   }
 
   order(): void {
+    this.submitted = true;
     if (
       this.customerFormComp.customerForm.valid &&
       this.addressFormComp.addressForm.valid &&
@@ -143,11 +191,6 @@ export class CreateOrderComponent implements OnInit, AfterViewInit {
           : null,
         info: this.infoFormComp.infoForm.get('info')?.value || null
       };
-
-      // console.log(
-      //   'Order data being sent to backend:',
-      //   JSON.stringify(orderData, null, 2)
-      // );
 
       this.ordersService.addOrder(orderData).subscribe({
         next: () => {

@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
 import { FormService } from '../../../../core/services/form.service';
 import { FormControl } from '@angular/forms';
 
@@ -9,6 +16,11 @@ import { FormControl } from '@angular/forms';
 })
 export class AddressFormComponent {
   addressForm = this.formService.initAddressForm();
+  @Input() submitted = false;
+  @ViewChildren('inputField', { read: ElementRef })
+  private inputs!: QueryList<ElementRef<HTMLInputElement>>;
+  private listeners: (() => void)[] = [];
+
   constructor(private formService: FormService) {}
 
   get controls() {

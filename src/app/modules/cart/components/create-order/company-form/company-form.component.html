@@ -1,21 +1,17 @@
 <h3>Dane firmy:</h3>
-<form [formGroup]="companyForm">
+<form [formGroup]="companyForm" class="form-grid">
   <div class="form-input">
-    <mat-form-field appearance="fill">
-      <mat-label>Nazwa firmy</mat-label>
-      <input matInput [formControl]="controls['companyName']" />
-      <mat-error *ngIf="controls['companyName'].invalid">
-        {{ getErrorMessage(controls['companyName']) }}
-      </mat-error>
-    </mat-form-field>
+    <input #inputFieldRef class="input-field" type="text" [formControl]="controls['companyName']" placeholder=" ">
+    <label>Nazwa firmy</label>
+    <mat-error *ngIf="controls['companyName'].invalid">
+      {{ getErrorMessage(controls['companyName']) }}
+    </mat-error>
   </div>
   <div class="form-input">
-    <mat-form-field appearance="fill">
-      <mat-label>NIP</mat-label>
-      <input matInput [formControl]="controls['nip']" />
-      <mat-error *ngIf="controls['nip'].invalid">
-        {{ getErrorMessage(controls['nip']) }}
-      </mat-error>
-    </mat-form-field>
+    <input #inputFieldRef class="input-field" type="text" [formControl]="controls['nip']" placeholder=" ">
+    <label>NIP</label>
+    <mat-error *ngIf="controls['nip'].invalid">
+      {{ getErrorMessage(controls['nip']) }}
+    </mat-error>
   </div>
 </form>
