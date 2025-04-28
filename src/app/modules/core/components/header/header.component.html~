@@ -75,7 +75,7 @@
 
         <!-- Favourites Icon -->
         <li class="nav-item">
-          <a class="nav-link display-initial cart-icon"
+          <a class="nav-link display-initial fav-icon"
              [routerLink]="(user$ | async) ? '/account/favourites' : '/login'">
             <svg
               xmlns="http://www.w3.org/2000/svg"
