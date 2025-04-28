@@ -1,16 +1,24 @@
-<ul class='nav nav-tabs my-3'>
-  <li class='nav-item'>
-    <a class='nav-link' routerLink='categories' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Kategorie</a>
-  </li>
-  <li class='nav-item'>
-    <a class='nav-link' routerLink='products' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Produkty</a>
-  </li>
-  <li class='nav-item'>
-    <a class='nav-link' routerLink='orders' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Zamówienia</a>
-  </li>
-  <li class='nav-item'>
-    <a class='nav-link' routerLink='users' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Użytkownicy</a>
-  </li>
-</ul>
+<main class="user-account-page">
+  <div class="account-layout">
+    <div class="tabs-header">
+      <ul class="nav nav-tabs">
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='categories' routerLinkActive='active'
+             [routerLinkActiveOptions]='{exact: true}'>Kategorie</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='products' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Produkty</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='orders' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Zamówienia</a>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='users' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Użytkownicy</a>
+        </li>
+      </ul>
+    </div>
 
-<router-outlet></router-outlet>
+
+    <router-outlet></router-outlet>
+  </div>
+</main>

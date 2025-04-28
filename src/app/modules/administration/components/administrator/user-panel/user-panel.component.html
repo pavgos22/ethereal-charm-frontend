@@ -16,12 +16,12 @@
     <tr *ngFor="let user of users">
       <td>{{ user.login }}</td>
       <td>{{ user.email }}</td>
-      <td>{{ user.role }}</td>
+      <td class="role">{{ user.role }}</td>
       <td>{{ user.company ? 'Tak' : 'Nie' }}</td>
       <td>{{ user.enabled ? 'Tak' : 'Nie' }}</td>
       <td>{{ user.lock ? 'Tak' : 'Nie' }}</td>
       <td>
-        <button class="btn btn-primary" [routerLink]="['/admin/panel/user', user.uuid]">Szczegóły</button>
+        <button class="details-btn" [routerLink]="['/admin/panel/user', user.uuid]">Szczegóły</button>
       </td>
     </tr>
     </tbody>

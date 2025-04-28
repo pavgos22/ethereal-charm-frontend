@@ -1,0 +1,34 @@
+.custom-stroked-btn {
+  color: #8c6464 !important;
+  border-color: #8c6464 !important;
+}
+
+.custom-stroked-btn:hover {
+  background-color: #f7f3f2 !important;
+  border-color: #f7f3f2 !important;
+}
+
+.custom-mat-field {
+  color: #8c6464 !important;
+}
+
+.custom-mat-field .mat-form-field-label {
+  color: #8c6464 !important;
+}
+
+.custom-mat-field .mat-input-element {
+  color: #8c6464 !important;
+}
+
+.custom-mat-field.mat-focused .mat-form-field-label {
+  color: #8c6464;
+}
+
+.custom-mat-field .mat-form-field-underline::after {
+  background-color: #8c6464;
+}
+
+.custom-mat-field .mat-form-field-ripple {
+  background-color: #8c6464;
+}
+
