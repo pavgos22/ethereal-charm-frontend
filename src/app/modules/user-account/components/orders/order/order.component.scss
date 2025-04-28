@@ -1,0 +1,15 @@
+.order-status {
+  font-family: Poppins, sans-serif;
+  color: #d99425;
+}
+
+.no-info, h2 {
+  font-family: Poppins, sans-serif;
+}
+
+.left-p {
+  @media (max-width: 576px) {
+    padding: 0 20px;
+  }
+}
+

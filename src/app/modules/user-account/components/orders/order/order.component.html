@@ -1,6 +1,6 @@
-<section *ngIf="order">
+<section class="left-p" *ngIf="order">
   <p>Numer zamówienia: {{ order.orders }}</p>
-  <p>Status zamówienia: <b>{{ order.status }}</b></p>
+  <p>Status zamówienia: <span class="order-status">{{ order.status }}</span></p>
   <p>Kwota zamówienia: {{ order.summaryPrice | currency: 'zł' }}</p>
 
   <div class="row my-2">
@@ -9,9 +9,27 @@
       <p>Imię: {{ order.customerDetails.firstName }}</p>
       <p>Nazwisko: {{ order.customerDetails.lastName }}</p>
       <ng-container>
-        <p>Nazwa firmy: {{ order.isCompany ? order.companyName : 'BRAK (Osoba prywatna)' }}</p>
-        <p>NIP: {{ order.isCompany ? order.nip : 'BRAK (Osoba prywatna)' }}</p>
+        <p>
+          Nazwa firmy:
+          <ng-container *ngIf="order.isCompany; else noCompany">
+            {{ order.companyName }}
+          </ng-container>
+          <ng-template #noCompany>
+            <span class="no-info">BRAK</span> (Osoba prywatna)
+          </ng-template>
+        </p>
+
+        <p>
+          NIP:
+          <ng-container *ngIf="order.isCompany; else noNip">
+            {{ order.nip }}
+          </ng-container>
+          <ng-template #noNip>
+            <span class="no-info">BRAK</span> (Osoba prywatna)
+          </ng-template>
+        </p>
       </ng-container>
+
     </div>
     <div class="col-md-6" *ngIf="order.address as address">
       <h2>Adres dostawy:</h2>
@@ -29,17 +47,20 @@
     </div>
     <div class="col-md-6">
       <h2>Informacje do zamówienia:</h2>
-      <p>{{ order.info || 'BRAK' }}</p>
+      <ng-container *ngIf="order.info; else noInfo">
+        {{ order.info }}
+      </ng-container>
+      <ng-template #noInfo>
+        <span class="no-info">BRAK</span>
+      </ng-template>
     </div>
+
   </div>
 
   <div class="row">
     <h2>Produkty w zamówieniu:</h2>
     <div class="cart-product" *ngFor="let cartProduct of order.items">
-      <app-cart-product
-        [cartView]="false"
-        [cartProduct]="cartProduct"
-      ></app-cart-product>
+      <app-cart-product [cartView]="false" [cartProduct]="cartProduct"></app-cart-product>
     </div>
   </div>
 </section>

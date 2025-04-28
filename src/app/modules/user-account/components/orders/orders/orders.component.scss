@@ -1,6 +1,50 @@
+section {
+  @media(max-width: 576px) {
+    padding: 0 20px;
+  }
+}
+
 .order-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
 }
+.order-status {
+  font-family: Poppins, sans-serif;
+  color: #d99425;
+}
+
+h2 {
+  font-family: Poppins, sans-serif;
+}
+
+.details-btn {
+  min-height: 36px;
+  background: none;
+  border: none;
+  color: #8c6464;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-family: 'Poiret One', sans-serif;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #a78484;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.no-display-mobile {
+  @media(max-width: 576px) {
+    display: none;
+  }
+}
+

@@ -9,7 +9,7 @@
     <span>{{ cartProduct.price | currency: 'zł' }}</span>
     <span>x {{ cartProduct.quantity }}</span>
     <span>{{ cartProduct.summaryPrice | currency: 'zł' }}</span>
-    <div class="trash-wrapper">
+    <div class="trash-wrapper" *ngIf='cartView'>
       <svg class="trash-icon outline" (click)="deleteProductFromCart()" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round">
@@ -28,7 +28,5 @@
         <path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1-1.993.117l-.007-.117h-4l-.007.117a1 1 0 0 1-1.993-.117a2 2 0 0 1 1.85-1.995l.15-.005h4z"/>
       </svg>
     </div>
-
-
   </div>
 </div>

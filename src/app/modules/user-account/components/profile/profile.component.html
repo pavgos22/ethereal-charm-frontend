@@ -60,9 +60,9 @@
           </div>
 
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['street']" required/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['number']" required/>
             <label>Nr domu / lok.</label>
-            <mat-error *ngIf="controls['street'].invalid && submitted">{{ getErrorMessage(controls['street']) }}
+            <mat-error *ngIf="controls['number'].invalid && submitted">{{ getErrorMessage(controls['number']) }}
             </mat-error>
           </div>
 
@@ -99,7 +99,7 @@
         </div>
 
         <div class="form-actions">
-          <button class="save-btn">Zapisz zmiany</button>
+          <button type="submit" class="save-btn">Zapisz zmiany</button>
         </div>
 
         <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert" *ngIf="errorMsg">
