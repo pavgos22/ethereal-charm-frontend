@@ -20,21 +20,21 @@
 
         <div class="form-grid">
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['firstName']" required/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['firstName']" [class.active]="controls['firstName'].value" required/>
             <label>Imię</label>
-            <mat-error *ngIf="controls['firstName'].invalid && submitted">{{ getErrorMessage(controls['firstName']) }}
-            </mat-error>
+            <mat-error *ngIf="controls['firstName'].invalid && submitted">{{ getErrorMessage(controls['firstName']) }}</mat-error>
           </div>
 
+
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['lastName']" required/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['lastName']" [class.active]="controls['lastName'].value" required/>
             <label>Nazwisko</label>
             <mat-error *ngIf="controls['lastName'].invalid && submitted">{{ getErrorMessage(controls['lastName']) }}
             </mat-error>
           </div>
 
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="email" [formControl]="controls['email']" required/>
+            <input #inputFieldRef class="input-field" type="email" [formControl]="controls['email']" [class.active]="controls['email'].value" required/>
             <label>Email</label>
             <mat-error *ngIf="controls['email'].invalid && submitted">{{ getErrorMessage(controls['email']) }}
             </mat-error>
@@ -47,27 +47,27 @@
           </div>
 
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['city']" required/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['city']" [class.active]="controls['city'].value" required/>
             <label>Miasto</label>
             <mat-error *ngIf="controls['city'].invalid && submitted">{{ getErrorMessage(controls['city']) }}</mat-error>
           </div>
 
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['street']" required/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['street']" [class.active]="controls['street'].value" required/>
             <label>Ulica</label>
             <mat-error *ngIf="controls['street'].invalid && submitted">{{ getErrorMessage(controls['street']) }}
             </mat-error>
           </div>
 
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['number']" required/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['number']" [class.active]="controls['number'].value" required/>
             <label>Nr domu / lok.</label>
             <mat-error *ngIf="controls['number'].invalid && submitted">{{ getErrorMessage(controls['number']) }}
             </mat-error>
           </div>
 
           <div class="form-input">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['postCode']" required/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['postCode']" [class.active]="controls['postCode'].value" required/>
             <label>Kod pocztowy</label>
             <mat-error *ngIf="controls['postCode'].invalid && submitted">{{ getErrorMessage(controls['postCode']) }}
             </mat-error>
@@ -84,7 +84,7 @@
 
           <div class="form-input" *ngIf="controls['company'].value"><input #inputFieldRef class="input-field"
                                                                            type="text"
-                                                                           [formControl]="controls['companyName']"/>
+                                                                           [formControl]="controls['companyName']" [class.active]="controls['companyName'].value"/>
             <label>Nazwa firmy</label>
             <mat-error
               *ngIf="controls['companyName'].invalid && submitted">{{ getErrorMessage(controls['companyName']) }}
@@ -92,7 +92,7 @@
           </div>
 
           <div class="form-input" *ngIf="controls['company'].value">
-            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['nip']"/>
+            <input #inputFieldRef class="input-field" type="text" [formControl]="controls['nip']" [class.active]="controls['nip'].value"/>
             <label>NIP</label>
             <mat-error *ngIf="controls['nip'].invalid && submitted">{{ getErrorMessage(controls['nip']) }}</mat-error>
           </div>

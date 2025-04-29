@@ -17,6 +17,11 @@ import { InfoFormComponent } from './info-form/info-form.component';
 import { OrdersService } from '../../../core/services/orders.service';
 import { ProfileService } from '../../../core/services/profile-service.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { selectOrderLoading } from '../../store/order.selectors';
+import { Observable } from 'rxjs';
+import { AppState } from '../../../../store/app.reducer';
+import { Store } from '@ngrx/store';
+import { createOrder } from '../../store/order.actions';
 
 @Component({
   selector: 'app-create-order',
@@ -24,6 +29,7 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrls: ['./create-order.component.scss']
 })
 export class CreateOrderComponent implements OnInit, AfterViewInit {
+  loading$: Observable<boolean> = this.store.select(selectOrderLoading);
   errorMsg: null | string = null;
   saveShipping = false;
   isAuthenticated = false;
@@ -40,6 +46,7 @@ export class CreateOrderComponent implements OnInit, AfterViewInit {
   >;
 
   constructor(
+    private store: Store<AppState>,
     private location: Location,
     private router: Router,
     private ordersService: OrdersService,
@@ -172,40 +179,44 @@ export class CreateOrderComponent implements OnInit, AfterViewInit {
 
   order(): void {
     this.submitted = true;
-    if (
+
+    if (!this.formsValid()) {
+      console.warn('Form is invalid');
+      return;
+    }
+
+    const orderData = this.gatherOrderData();
+
+    if (this.saveShipping && this.isAuthenticated) {
+      this.saveShippingDetails(orderData.address);
+    }
+
+    this.store.dispatch(createOrder({ orderData }));
+  }
+
+  private formsValid(): boolean {
+    return (
       this.customerFormComp.customerForm.valid &&
       this.addressFormComp.addressForm.valid &&
       this.deliveryFormComp.deliveryForm.valid &&
       (!this.isCompany || this.companyFormComp.companyForm.valid)
-    ) {
-      const orderData = {
-        address: this.addressFormComp.addressForm.getRawValue(),
-        deliver: this.deliveryFormComp.deliveryForm.getRawValue(),
-        customerDetails: this.customerFormComp.customerForm.getRawValue(),
-        isCompany: this.isCompany,
-        companyName: this.isCompany
-          ? this.companyFormComp.companyForm.get('companyName')?.value
-          : null,
-        nip: this.isCompany
-          ? this.companyFormComp.companyForm.get('nip')?.value
-          : null,
-        info: this.infoFormComp.infoForm.get('info')?.value || null
-      };
+    );
+  }
 
-      this.ordersService.addOrder(orderData).subscribe({
-        next: () => {
-          if (this.saveShipping && this.isAuthenticated) {
-            this.saveShippingDetails(orderData.address);
-          }
-        },
-        error: (err) => {
-          this.errorMsg = err;
-          console.error('Order submission error:', err);
-        }
-      });
-    } else {
-      console.warn('Form is invalid');
-    }
+  private gatherOrderData(): any {
+    return {
+      address: this.addressFormComp.addressForm.getRawValue(),
+      deliver: this.deliveryFormComp.deliveryForm.getRawValue(),
+      customerDetails: this.customerFormComp.customerForm.getRawValue(),
+      isCompany: this.isCompany,
+      companyName: this.isCompany
+        ? this.companyFormComp.companyForm.get('companyName')?.value
+        : null,
+      nip: this.isCompany
+        ? this.companyFormComp.companyForm.get('nip')?.value
+        : null,
+      info: this.infoFormComp.infoForm.get('info')?.value || null
+    };
   }
 
   saveShippingDetails(address: any): void {

@@ -17,6 +17,14 @@ const REGISTER_TYPE = '[Auth] Register';
 const REGISTER_SUCCESS_TYPE = '[Auth] Register Success';
 const REGISTER_FAILURE_TYPE = '[Auth] Register Failure';
 
+const PASSWORD_RESET_TYPE = '[Auth] Password Reset';
+const PASSWORD_RESET_SUCCESS_TYPE = '[Auth] Password Reset Success';
+const PASSWORD_RESET_FAILURE_TYPE = '[Auth] Password Reset Failure';
+
+const ACCOUNT_ACTIVATION_TYPE = '[Auth] Account Activation';
+const ACCOUNT_ACTIVATION_SUCCESS = '[Auth] Account Activation Success';
+const ACCOUNT_ACTIVATION_FAILURE = '[Auth] Account Activation Failure';
+
 const CLEAR_ERROR_TYPE = '[Auth] Clear Error';
 
 export const login = createAction(
@@ -62,3 +70,27 @@ export const registerFailure = createAction(
 );
 
 export const clearError = createAction(CLEAR_ERROR_TYPE);
+
+export const passwordReset = createAction(
+  PASSWORD_RESET_TYPE,
+  props<{ email: string }>()
+);
+
+export const passwordResetFailure = createAction(
+  PASSWORD_RESET_FAILURE_TYPE,
+  props<{ error: string }>()
+);
+
+export const activateAccount = createAction(
+  ACCOUNT_ACTIVATION_TYPE,
+  props<{ uid: string }>()
+);
+
+export const activateAccountSuccess = createAction(ACCOUNT_ACTIVATION_SUCCESS);
+
+export const activateAccountFailure = createAction(
+  ACCOUNT_ACTIVATION_FAILURE,
+  props<{ error: string }>()
+);
+
+export const passwordResetSuccess = createAction(PASSWORD_RESET_SUCCESS_TYPE);

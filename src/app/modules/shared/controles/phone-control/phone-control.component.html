@@ -1,15 +1,27 @@
 <div class="phone-grid">
   <div class="form-input">
-    <input #inputFieldRef class="input-field prefix-field" type="text" [formControl]="numberPrefixControl"
-           placeholder=" "/>
+    <input #inputFieldRef
+           class="input-field prefix-field"
+           type="text"
+           [formControl]="numberPrefixControl"
+           [class.active]="numberPrefixControl.value"
+           required/>
     <label>Kierunkowy</label>
   </div>
 
   <div class="form-input">
-    <input #inputFieldRef class="input-field" type="text" [formControl]="numberControl" placeholder=" "/>
+    <input #inputFieldRef
+           class="input-field"
+           type="text"
+           [formControl]="numberControl"
+           [class.active]="numberControl.value"
+           required/>
     <label>Numer&nbsp;tel.</label>
+
     <div class="control-err">
-      <mat-error *ngIf="submitted && numberControl.invalid">Niepoprawny format numeru</mat-error>
+      <mat-error *ngIf="submitted && numberControl.invalid">
+        Niepoprawny format numeru
+      </mat-error>
     </div>
   </div>
 </div>

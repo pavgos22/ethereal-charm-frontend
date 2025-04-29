@@ -8,6 +8,7 @@ import { InputOnlyNumberDirective } from './directives/input-only-number.directi
 import { PhoneControlComponent } from './controles/phone-control/phone-control.component';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CartProductComponent,
     QuantityControlComponent,
     PhoneControlComponent,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule {}

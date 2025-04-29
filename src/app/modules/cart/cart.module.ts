@@ -11,6 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { CompanyFormComponent } from './components/create-order/company-form/company-form.component';
 import { InfoFormComponent } from './components/create-order/info-form/info-form.component';
 import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.component';
+import { StoreModule } from '@ngrx/store';
+import { orderReducer } from './store/order.reducer';
+import { OrderEffects } from './store/order.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,12 @@ import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.comp
     InfoFormComponent,
     EmptyCartComponent
   ],
-  imports: [SharedModule, CartRoutingModule, FormsModule]
+  imports: [
+    SharedModule,
+    CartRoutingModule,
+    FormsModule,
+    StoreModule.forFeature('order', orderReducer),
+    EffectsModule.forFeature([OrderEffects])
+  ]
 })
 export class CartModule {}

@@ -91,6 +91,53 @@ export class AuthEffects {
       })
     );
   });
+
+  passwordReset$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.passwordReset),
+      switchMap((action) => {
+        return this.authService.resetPassword({ email: action.email }).pipe(
+          map(() => {
+            this.notifierService.notify(
+              'success',
+              'Jeśli podano prawidłowego e‑maila, wysłaliśmy instrukcję resetu.'
+            );
+            return AuthActions.passwordResetSuccess();
+          }),
+          catchError((err) => {
+            return of(
+              AuthActions.passwordResetFailure({
+                error: 'Nie udało się zresetować hasła.'
+              })
+            );
+          })
+        );
+      })
+    );
+  });
+
+  activateAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.activateAccount),
+      switchMap((action) => {
+        return this.authService.activateAccount(action.uid).pipe(
+          map((response) => {
+            this.router.navigate(['/login']);
+            this.notifierService.notify('success', response.message);
+            return AuthActions.activateAccountSuccess();
+          }),
+          catchError((error) => {
+            return of(
+              AuthActions.activateAccountFailure({
+                error: 'Nie udało się aktywować konta.'
+              })
+            );
+          })
+        );
+      })
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private authService: AuthService,

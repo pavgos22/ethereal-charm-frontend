@@ -59,6 +59,34 @@ const _authReducer = createReducer(
     loading: false,
     error: null
   })),
+  on(AuthActions.passwordReset, (state) => ({
+    ...state,
+    loading: true
+  })),
+  on(AuthActions.passwordResetSuccess, (state) => ({
+    ...state,
+    loading: false,
+    error: null
+  })),
+  on(AuthActions.passwordResetFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    error: action.error
+  })),
+  on(AuthActions.activateAccount, (state) => ({
+    ...state,
+    loading: true
+  })),
+  on(AuthActions.activateAccountSuccess, (state) => ({
+    ...state,
+    loading: false,
+    error: null
+  })),
+  on(AuthActions.activateAccountFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    error: action.error
+  })),
   on(AuthActions.clearError, (state, action) => ({
     ...state,
     error: null

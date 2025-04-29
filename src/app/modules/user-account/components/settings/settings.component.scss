@@ -76,7 +76,7 @@ main {
 }
 
 input:checked + .toggle {
-  background: #00c37e;
+  background: #8c6464;
 }
 input:checked + .toggle .circle {
   transform: translateX(24px);
@@ -210,7 +210,7 @@ input:checked + .toggle .circle {
   padding-right: 0.8em;
 }
 .checkbox-wrapper-7 .tgl-ios:checked + .tgl-btn {
-  background: #86d993;
+  background: #af8686;
 }
 .checkbox-wrapper-7 .tgl-ios:checked + .tgl-btn:active {
   box-shadow: none;

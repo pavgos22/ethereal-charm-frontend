@@ -37,8 +37,9 @@
             {{ error }}
           </div>
 
-          <div class="mt-2" *ngIf="loading$ | async">
-            Trwa logowanie...
+          <div class="mt-2 spinner-wrapper" *ngIf="loading$ | async">
+            <mat-progress-spinner diameter="20" strokeWidth="3" mode="indeterminate" [style.--mdc-circular-progress-active-indicator-color]="'#8c6464'"></mat-progress-spinner>
+            <span>Trwa logowanie...</span>
           </div>
 
           <div class="d-flex justify-content-end">

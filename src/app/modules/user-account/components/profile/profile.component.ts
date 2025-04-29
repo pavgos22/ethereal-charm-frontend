@@ -51,19 +51,28 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.inputs.forEach((el) => {
-      const n = el.nativeElement;
-      const f = () => n.classList.add('active');
-      const b = () => {
-        if (!n.value) n.classList.remove('active');
-      };
-      n.addEventListener('focus', f);
-      n.addEventListener('blur', b);
-      this.listeners.push(() => {
-        n.removeEventListener('focus', f);
-        n.removeEventListener('blur', b);
-      });
-    });
+    this.inputs.changes.subscribe(
+      (inputs: QueryList<ElementRef<HTMLInputElement>>) => {
+        this.listeners.forEach((off) => off());
+        this.listeners = [];
+
+        inputs.forEach((el) => {
+          const n = el.nativeElement;
+          const f = () => n.classList.add('active');
+          const b = () => {
+            if (!n.value) n.classList.remove('active');
+          };
+          n.addEventListener('focus', f);
+          n.addEventListener('blur', b);
+          this.listeners.push(() => {
+            n.removeEventListener('focus', f);
+            n.removeEventListener('blur', b);
+          });
+        });
+      }
+    );
+
+    this.inputs.notifyOnChanges();
   }
 
   ngOnDestroy(): void {

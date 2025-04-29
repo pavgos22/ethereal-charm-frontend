@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 import { NotifierService } from 'angular-notifier';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/app.reducer';
+import { selectAuthLoading } from '../../store/auth.selectors';
+import * as AuthActions from '../../store/auth.actions';
 
 @Component({
   selector: 'app-account-activation',
@@ -10,8 +14,10 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./account-activation.component.scss']
 })
 export class AccountActivationComponent implements OnInit {
+  loading$: Observable<boolean> = this.store.select(selectAuthLoading);
   errorMessage: null | string = null;
   constructor(
+    private store: Store<AppState>,
     private route: ActivatedRoute,
     private authService: AuthService,
     private notifierService: NotifierService,
@@ -19,20 +25,11 @@ export class AccountActivationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap
-      .pipe(
-        switchMap((params) =>
-          this.authService.activateAccount(params.get('uid') as string)
-        )
-      )
-      .subscribe({
-        next: (response) => {
-          this.router.navigate(['/login']);
-          this.notifierService.notify('success', response.message);
-        },
-        error: (err) => {
-          this.errorMessage = err;
-        }
-      });
+    this.route.paramMap.subscribe((params) => {
+      const uid = params.get('uid');
+      if (uid) {
+        this.store.dispatch(AuthActions.activateAccount({ uid }));
+      }
+    });
   }
 }

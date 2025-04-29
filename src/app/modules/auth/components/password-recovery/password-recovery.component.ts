@@ -12,6 +12,10 @@ import { PasswdRecoveryForm } from '../../../core/models/forms.model';
 import { AuthService } from '../../../core/services/auth.service';
 import { NotifierService } from 'angular-notifier';
 import { Observable } from 'rxjs';
+import { selectAuthLoading } from '../../store/auth.selectors';
+import * as AuthActions from '../../store/auth.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/app.reducer';
 
 @Component({
   selector: 'app-password-recovery',
@@ -19,15 +23,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./password-recovery.component.scss']
 })
 export class PasswordRecoveryComponent implements AfterViewInit, OnDestroy {
-  /* ---------- formularz ---------- */
   passwdRecoveryForm: FormGroup<PasswdRecoveryForm> =
     this.formService.initPasswdRecoveryForm();
   submitted = false;
+  loading$: Observable<boolean> = this.store.select(selectAuthLoading);
 
-  /* ---------- komunikaty ---------- */
   errorMessage: string | null = null;
 
-  /* ---------- refs do inputów ---------- */
   @ViewChildren('inputFieldRef', { read: ElementRef })
   private inputs!: QueryList<ElementRef<HTMLInputElement>>;
   private listeners: (() => void)[] = [];
@@ -35,10 +37,10 @@ export class PasswordRecoveryComponent implements AfterViewInit, OnDestroy {
   constructor(
     private formService: FormService,
     private authService: AuthService,
-    private notifier: NotifierService
+    private notifier: NotifierService,
+    private store: Store<AppState>
   ) {}
 
-  /* --- getter do pola e‑mail w template --- */
   get controls(): PasswdRecoveryForm {
     return this.passwdRecoveryForm.controls;
   }
@@ -47,31 +49,20 @@ export class PasswordRecoveryComponent implements AfterViewInit, OnDestroy {
     return this.formService.getErrorMessage(ctrl);
   }
 
-  /* ---------- SUBMIT ---------- */
   onPasswdRecovery(): void {
     this.submitted = true;
 
-    /* nie wysyłaj, jeśli formularz niepoprawny */
     if (this.passwdRecoveryForm.invalid) {
       return;
     }
 
-    this.authService
-      .resetPassword(this.passwdRecoveryForm.getRawValue())
-      .subscribe({
-        next: () => {
-          this.notifier.notify(
-            'success',
-            'Jeśli podano prawidłowego e‑maila, wysłaliśmy instrukcję resetu.'
-          );
-        },
-        error: (err) => {
-          this.errorMessage = err;
-        }
-      });
+    this.store.dispatch(
+      AuthActions.passwordReset({
+        email: this.passwdRecoveryForm.getRawValue().email
+      })
+    );
   }
 
-  /* ---------- focus / blur ---------- */
   ngAfterViewInit(): void {
     this.inputs.forEach((el) => {
       const native = el.nativeElement;
@@ -88,7 +79,6 @@ export class PasswordRecoveryComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  /* ---------- cleanup ---------- */
   ngOnDestroy(): void {
     this.listeners.forEach((off) => off());
   }
