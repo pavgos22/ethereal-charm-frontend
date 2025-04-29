@@ -5,9 +5,11 @@
       <div class="overlay-content">
         <h1 class="overlay-heading">Twoja codzienna dawka uroku</h1>
         <p class="overlay-subheading">Delikatna biżuteria, która podkreśla Twoją wyjątkowość.</p>
-        <div class="btn btn-one">
-          <a href="/products?page=1&limit=5&sort_by=priority&sort=desc"><span>Zobacz kolekcję</span></a>
-        </div>
+        <a class="btn btn-one"
+            [routerLink]="['/products']"
+            [queryParams]="{ page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }">
+          <span>Zobacz kolekcję</span>
+        </a>
       </div>
     </div>
   </div>
@@ -73,48 +75,54 @@
     <div class="title-section mb-5">
       <hr class="top-hr"><h1>Kategorie</h1><hr>
     </div>
+
     <div class="row">
       <div class="col-lg-8">
-        <div class="product-item sm-height bg-gray mb-4">
+        <div  class="product-item sm-height bg-gray mb-4"
+              [routerLink]="['/products']"
+              [queryParams]="{ category: categoryIds.naszyjniki, page: 1, limit: 5 }"
+              tabindex="0" role="link">
           <div class="overlay">
             <div class="overlay-content">
-              <div class="btn btn-one">
-                <a href="/products"><span>Naszyjniki</span></a>
-              </div>
+              <span class="btn btn-one">Naszyjniki</span>
             </div>
           </div>
-          <img src="assets/img/categories/necklace1.png" alt="Image" class="img-fluid">
+          <img src="assets/img/categories/necklace1.png"
+               alt="Naszyjniki" class="img-fluid">
         </div>
       </div>
 
       <div class="col-lg-4">
-        <div class="product-item sm-height bg-gray mb-4">
+        <div  class="product-item sm-height bg-gray mb-4"
+              [routerLink]="['/products']"
+              [queryParams]="{ category: categoryIds.bransoletki, page: 1, limit: 5 }"
+              tabindex="0" role="link">
           <div class="overlay">
             <div class="overlay-content">
-              <div class="btn btn-one">
-                <a href="/products"><span>Bransoletki</span></a>
-              </div>
+              <span class="btn btn-one">Bransoletki</span>
             </div>
           </div>
-
-          <img src="assets/img/categories/bracelet1.png" alt="Image" class="img-fluid">
+          <img src="assets/img/categories/bracelet1.png"
+               alt="Bransoletki" class="img-fluid">
         </div>
 
-        <div class="product-item sm-height bg-gray mt-lg-1 mb-4">
+        <div  class="product-item sm-height bg-gray mt-lg-1 mb-4"
+              [routerLink]="['/products']"
+              [queryParams]="{ category: categoryIds.pierscionki, page: 1, limit: 5 }"
+              tabindex="0" role="link">
           <div class="overlay">
             <div class="overlay-content">
-              <div class="btn btn-one">
-                <a href="/products"><span>Pierścionki</span></a>
-              </div>
+              <span class="btn btn-one">Pierścionki</span>
             </div>
           </div>
-
-          <img src="assets/img/categories/ring1.png" alt="Image" class="img-fluid">
+          <img src="assets/img/categories/ring1.png"
+               alt="Pierścionki" class="img-fluid">
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <div class="discount-image my-5"></div>
 

@@ -12,36 +12,35 @@
              [routerLinkActiveOptions]="{ exact: true }">Strona główna</a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
-             aria-expanded="false">
+        <li class="nav-item dropdown products-dropdown">
+          <a class="nav-link dropdown-toggle"
+             id="productsDropdown"
+             href="#"
+             aria-expanded="false"
+             (click)="onProductsClick($event)">
+
             Produkty
           </a>
+
           <ul class="dropdown-menu" aria-labelledby="productsDropdown">
             <li>
-              <a class="dropdown-item" [routerLink]="['/products']"
+              <a class="dropdown-item"
+                 [routerLink]="['/products']"
                  [queryParams]="{ page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }">
                 Wszystkie
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider"/>
-            </li>
 
             <ng-container *ngIf="categories$ | async as categories">
-              <ng-container *ngFor="let category of categories; let last = last">
-                <li>
-                  <a class="dropdown-item" (click)="navigateToCategory(category)">
-                    {{ category.name }}
-                  </a>
-                </li>
-                <li *ngIf="!last">
-                  <hr class="dropdown-divider"/>
-                </li>
-              </ng-container>
+              <li *ngFor="let category of categories">
+                <a class="dropdown-item" (click)="navigateToCategory(category)">
+                  {{ category.name }}
+                </a>
+              </li>
             </ng-container>
           </ul>
         </li>
+
 
 
         <li class="nav-item">
@@ -66,7 +65,7 @@
               <path d="M9 11v-5a3 3 0 0 1 6 0v5"/>
             </svg>
             <span class="cart-quantity" *ngIf="(cartTotalCount$ | async) as count" [hidden]="!count || count === 0">
-              {{ count > 9 ? '99+' : count }}
+              {{ count > 9 ? '9+' : count }}
             </span>
 
           </a>
@@ -99,47 +98,35 @@
 
         <ng-container *ngIf="user$ | async as user; else notLoggedIn">
           <!-- User Icon Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link display-initial user-icon" id="accountLink" data-bs-toggle="dropdown"
+          <li class="nav-item dropdown account-dropdown">
+            <a class="nav-link display-initial user-icon"
+               #accountLink
+               id="accountLink"
+               [routerLink]="isMobile ? null : '/account/profile'"
+               [attr.data-bs-toggle]="isMobile ? null : 'dropdown'"
+               (click)="onAccountClick($event)"
                aria-expanded="false">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-user"
-              >
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   class="icon icon-tabler icons-tabler-outline icon-tabler-user">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/>
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
               </svg>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountLink">
-              <li>
-                <a class="dropdown-item" routerLink="/account/profile">Profil</a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="/account/orders">Zamówienia</a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="/account/favourites">Ulubione</a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="/account/settings">Ustawienia</a>
-              </li>
-              <li>
-                <hr class="dropdown-divider"/>
-              </li>
-              <li>
-                <button class="dropdown-item" (click)="logout()">Wyloguj się</button>
-              </li>
+
+            <ul class="dropdown-menu dropdown-menu-end no-border" aria-labelledby="accountLink">
+              <li><a class="dropdown-item no-border" routerLink="/account/profile">Profil</a></li>
+              <li><a class="dropdown-item no-border" routerLink="/account/orders">Zamówienia</a></li>
+              <li><a class="dropdown-item no-border" routerLink="/account/favourites">Ulubione</a></li>
+              <li><a class="dropdown-item no-border" routerLink="/account/settings">Ustawienia</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item no-border" (click)="logout()">Wyloguj się</button></li>
             </ul>
           </li>
+
 
 
           <!-- Admin Icon -->

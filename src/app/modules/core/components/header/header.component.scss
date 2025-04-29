@@ -68,19 +68,102 @@
   }
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
-  display: block;
-  margin-top: 0;
+.dropdown-menu {
+  background-color: #f7f2f2;
+  border: none;
+  padding: .25rem 0;
+  border-bottom: 1px solid #e5dada;
 }
 
-.nav-item.dropdown:hover > .nav-link {
-  color: #a18f8f;
+.dropdown-item {
+  cursor: pointer;
+  font-family: 'Lexend Peta', sans-serif;
+  font-size: .8rem;
+  color: #b3a3a3;
+  padding: .5rem 1.25rem;
+  transition: background-color .15s ease, color .15s ease;
+  border-left: 1px solid #e5dada;
+  border-right: 1px solid #e5dada;
+  border-top: 1px solid #e5dada;
+
+  &:hover,
+  &:focus {
+    background-color: #ece1ec;
+    color: #a18f8f;
+  }
+
+  &:active {
+    background-color: #d8c5e1 !important;
+    color: #a18f8f !important;
+  }
 }
 
-.dropdown-menu-end {
-  right: 0;
-  left: auto;
+.dropdown-menu > li:first-child > .dropdown-item {
+  border-top: none;
 }
+
+.dropdown-menu > li + li > .dropdown-item {
+  border-top: 1px solid #e5dada;
+}
+
+@media (min-width: 992px) {
+  .products-dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+}
+
+.account-dropdown .dropdown-menu {
+  background-color: #f7f2f2;
+  border: none;
+  padding: .25rem 0;
+  border-bottom: 1px solid #e5dada;
+}
+
+.account-dropdown .dropdown-item {
+  cursor: pointer;
+  font-family: 'Lexend Peta', sans-serif;
+  font-size: .8rem;
+  color: #b3a3a3;
+  padding: .5rem 1.25rem;
+  transition: background-color .15s ease, color .15s ease;
+  border-left: 1px solid #e5dada;
+  border-right: 1px solid #e5dada;
+  border-top: 1px solid #e5dada;
+
+  &:hover,
+  &:focus { background-color: #ece1ec; color: #a18f8f; }
+
+  &:active { background-color: #d8c5e1 !important; color: #a18f8f !important; }
+}
+
+.account-dropdown .dropdown-menu > li:first-child > .dropdown-item { border-top: none; }
+.account-dropdown .dropdown-menu > li + li > .dropdown-item        { border-top: 1px solid #e5dada; }
+
+@media (min-width: 992px) {
+  .account-dropdown:hover > .dropdown-menu { display: block; margin-top: 0; }
+}
+
+@media (max-width: 991.98px) {
+  .account-dropdown .dropdown-menu {
+    position: absolute;
+    right: 0;
+    left: auto;
+  }
+
+  .account-dropdown.show .dropdown-menu {
+    display: block;
+  }
+}
+
+.custom-navbar .nav-link.dropdown-toggle::after {
+  content: none !important;
+}
+
+.no-border {
+  border: none !important;
+}
+
 
 .cart-icon svg,
 .user-icon svg {

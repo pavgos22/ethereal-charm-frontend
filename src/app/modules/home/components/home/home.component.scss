@@ -158,6 +158,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.5);
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       transform: scale(0.1, 1);
+      pointer-events: none;
     }
 
     &:hover span {
@@ -176,6 +177,7 @@
       z-index: 1;
       transition: all 0.3s;
       background-color: rgba(247, 243, 242, 0.5);
+      pointer-events: none;
     }
 
     &:hover::after {
