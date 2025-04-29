@@ -7,18 +7,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item m-xl-1">
           <a class="nav-link" aria-current="page" routerLink="" routerLinkActive="active"
              [routerLinkActiveOptions]="{ exact: true }">Strona główna</a>
         </li>
 
-        <li class="nav-item dropdown products-dropdown">
+        <li class="nav-item m-xl-1 dropdown products-dropdown">
           <a class="nav-link dropdown-toggle"
              id="productsDropdown"
-             href="#"
-             aria-expanded="false"
-             (click)="onProductsClick($event)">
-
+             href="javascript:void(0)"
+             [attr.data-bs-toggle]="isMobile ? 'dropdown' : null"
+             (click)="!isMobile && onProductsClick($event)">
             Produkty
           </a>
 
@@ -41,18 +40,16 @@
           </ul>
         </li>
 
-
-
-        <li class="nav-item">
+        <li class="nav-item m-xl-1">
           <a class="nav-link" routerLink="/about" routerLinkActive="active">O nas</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item m-xl-1">
           <a class="nav-link" routerLink="/contact" routerLinkActive="active">Kontakt</a>
         </li>
       </ul>
 
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mobile-icons-container flex-row w-100 justify-content-center align-items-center gap-3">
         <!-- Cart Icon -->
         <li class="nav-item">
           <a class="nav-link display-initial cart-icon" routerLink="/cart">
@@ -67,7 +64,6 @@
             <span class="cart-quantity" *ngIf="(cartTotalCount$ | async) as count" [hidden]="!count || count === 0">
               {{ count > 9 ? '9+' : count }}
             </span>
-
           </a>
         </li>
 
