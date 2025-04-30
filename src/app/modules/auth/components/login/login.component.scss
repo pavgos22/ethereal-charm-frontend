@@ -87,13 +87,15 @@ form {
 
 .logo {
   font-family: "WindSong", serif;
-  position: absolute;
-  height: 100%;
-  width: 45%;
-  top: 0;
-  left: 0;
+  position: relative;
+  width: fit-content;
+  height: auto;
+  z-index: 10;
   text-align: center;
+  margin: 0 auto;
+  padding-top: 2.5rem;
 }
+
 
 .logo a {
   color: #c0a5a5;
@@ -173,6 +175,10 @@ label {
 .text {
   color: #bbb;
   font-size: 0.7rem;
+
+  @media(max-width: 768px) {
+    padding-bottom: 50px;
+  }
 }
 
 .text a {
@@ -213,7 +219,7 @@ label {
   .logo {
     width: 100%;
     text-align: center;
-    padding-top: 40px;
+    padding-top: 60px;
   }
 
   .inner-box {

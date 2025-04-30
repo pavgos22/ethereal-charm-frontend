@@ -3,7 +3,7 @@
   <div class="hero-image">
     <div class="overlay">
       <div class="overlay-content">
-        <h1 class="overlay-heading">Twoja codzienna dawka uroku</h1>
+        <h1 class="overlay-heading">Twoja codzienna dawka<br class="mobile-display"> uroku</h1>
         <p class="overlay-subheading">Delikatna biżuteria, która podkreśla Twoją wyjątkowość.</p>
         <a class="btn btn-one"
             [routerLink]="['/products']"
@@ -73,7 +73,7 @@
 <section class="categories">
   <div class="container-fluid">
     <div class="title-section mb-5">
-      <hr class="top-hr"><h1>Kategorie</h1><hr>
+      <hr class="top-hr"><h1>Kategorie</h1><hr class="bottom-hr">
     </div>
 
     <div class="row">
@@ -106,7 +106,7 @@
                alt="Bransoletki" class="img-fluid">
         </div>
 
-        <div  class="product-item sm-height bg-gray mt-lg-1 mb-4"
+        <div class="product-item sm-height bg-gray mt-lg-1 mb-4"
               [routerLink]="['/products']"
               [queryParams]="{ category: categoryIds.pierscionki, page: 1, limit: 5 }"
               tabindex="0" role="link">
@@ -129,7 +129,7 @@
 <section class="discounted-products">
   <div class="container-fluid">
     <div class="discount-section my-5">
-      <h1>Przecenione produkty</h1>
+      <hr class="top-hr mobile-display"><h1>Przecenione produkty</h1><hr class="bottom-hr mobile-display">
     </div>
     <div class="home-product-wrapper">
       <div class="product-container">

@@ -39,6 +39,22 @@
     width: 50%;
     height: 1px;
     background-color: #ccc;
+
+    @media(max-width: 992px) {
+      width: 60%;
+    }
+
+    @media(max-width: 840px) {
+      width: 70%;
+    }
+
+    @media(max-width: 624px) {
+      width: 80%;
+    }
+
+    @media(max-width: 576px) {
+      width: 90%;
+    }
   }
 }
 
@@ -47,6 +63,10 @@
   border-bottom: none;
   gap: 0.5rem;
   flex-wrap: wrap;
+
+  @media (max-width: 450px) {
+    gap: 0;
+  }
 }
 
 .nav-item a {
