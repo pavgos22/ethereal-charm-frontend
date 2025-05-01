@@ -100,7 +100,7 @@ export class AuthEffects {
           map(() => {
             this.notifierService.notify(
               'success',
-              'Jeśli podano prawidłowego e‑maila, wysłaliśmy instrukcję resetu.'
+              'Wysłano instrukcję resetu hasła na podanego maila.'
             );
             return AuthActions.passwordResetSuccess();
           }),

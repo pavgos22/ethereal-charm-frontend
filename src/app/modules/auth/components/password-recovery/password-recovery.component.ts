@@ -9,13 +9,13 @@ import {
 import { FormService } from '../../../core/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PasswdRecoveryForm } from '../../../core/models/forms.model';
-import { AuthService } from '../../../core/services/auth.service';
 import { NotifierService } from 'angular-notifier';
 import { Observable } from 'rxjs';
 import { selectAuthLoading } from '../../store/auth.selectors';
 import * as AuthActions from '../../store/auth.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/app.reducer';
+import { PublicService } from '../../../core/services/public.service';
 
 @Component({
   selector: 'app-password-recovery',
@@ -36,7 +36,7 @@ export class PasswordRecoveryComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private formService: FormService,
-    private authService: AuthService,
+    private publicService: PublicService,
     private notifier: NotifierService,
     private store: Store<AppState>
   ) {}
@@ -52,15 +52,37 @@ export class PasswordRecoveryComponent implements AfterViewInit, OnDestroy {
   onPasswdRecovery(): void {
     this.submitted = true;
 
-    if (this.passwdRecoveryForm.invalid) {
-      return;
-    }
+    if (this.passwdRecoveryForm.invalid) return;
 
-    this.store.dispatch(
-      AuthActions.passwordReset({
-        email: this.passwdRecoveryForm.getRawValue().email
-      })
-    );
+    const enteredEmail = this.passwdRecoveryForm.getRawValue().email;
+
+    this.publicService.checkEmail(enteredEmail).subscribe({
+      next: ({ exists, enabled }) => {
+        if (!exists) {
+          this.notifier.notify(
+            'warning',
+            'Nie znaleziono konta z podanym adresem e-mail.'
+          );
+          return;
+        }
+
+        if (!enabled) {
+          this.notifier.notify(
+            'warning',
+            'Konto nie zostało jeszcze aktywowane.'
+          );
+          return;
+        }
+
+        this.store.dispatch(AuthActions.passwordReset({ email: enteredEmail }));
+      },
+      error: () => {
+        this.notifier.notify(
+          'error',
+          'Wystąpił błąd podczas weryfikacji adresu e-mail.'
+        );
+      }
+    });
   }
 
   ngAfterViewInit(): void {
