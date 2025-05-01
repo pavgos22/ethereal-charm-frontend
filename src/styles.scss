@@ -1,6 +1,7 @@
 @import "node_modules/angular-notifier/styles";
 @import "node_modules/flag-icon-css/css/flag-icons.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.css";
+@import 'node_modules/angular-notifier/styles';
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -35,3 +36,32 @@ mat-form-field {
   gap: 0.5rem;
 }
 
+notifier-container .notifier__notification--success {
+  background-color: #d8f5d0 !important;
+  border-left: 6px solid #76b06b !important;
+  color: #2f4f2f !important;
+  font-family: 'Poppins', sans-serif !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  margin-right: 1rem !important;
+  border-radius: 0 !important;
+}
+
+notifier-container .notifier__notification--warning {
+  background-color: #fff4cc !important;
+  border-left: 6px solid #ffb400 !important;
+  color: #665200 !important;
+  font-family: 'Poppins', sans-serif !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  margin-right: 1rem !important;
+  border-radius: 0 !important;
+}
+
+notifier-container .notifier__notification--error {
+  background-color: #ffd7d6 !important;
+  border-left: 6px solid #e3362c !important;
+  color: #4a1210 !important;
+  font-family: 'Poppins', sans-serif !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  margin-right: 1rem !important;
+  border-radius: 0 !important;
+}
