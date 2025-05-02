@@ -24,6 +24,8 @@ export class RegisterComponent implements AfterViewInit, OnDestroy {
   registerForm: FormGroup<RegisterForm> = this.formService.initRegisterForm();
   notMatchingPasswordsErr: string | null = null;
   submitted = false;
+  showPassword = false;
+  showRepeatedPassword = false;
 
   errorMsg$: Observable<string | null> = this.store.select(selectAuthError);
   loading$: Observable<boolean> = this.store.select(selectAuthLoading);
@@ -44,6 +46,14 @@ export class RegisterComponent implements AfterViewInit, OnDestroy {
 
   getErrorMessage(control: FormControl): string {
     return this.formService.getErrorMessage(control);
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleRepeatedPasswordVisibility(): void {
+    this.showRepeatedPassword = !this.showRepeatedPassword;
   }
 
   onRegister(): void {

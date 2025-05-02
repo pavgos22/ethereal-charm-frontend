@@ -79,7 +79,7 @@ export class AuthEffects {
             this.router.navigate(['/login']);
             this.notifierService.notify(
               'success',
-              'Poprawnie utworzono konto użytkownika! Aktywuj konto na podanym adresie e-mail.'
+              'Poprawnie utworzono konto użytkownika! Aktywuj konto na podanym adresie e-mail. Pamiętaj, żeby sprawdzić folder spam.'
             );
             return AuthActions.registerSuccess();
           }),

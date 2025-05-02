@@ -25,6 +25,8 @@ export class PasswordRecoveryFormComponent
   passwordsForm: FormGroup<PasswordsForm> =
     this.formService.initPasswordsForm();
   submitted = false;
+  showPassword = false;
+  showRepeatedPassword = false;
 
   uid = '';
   errorMessage: string | null = null;
@@ -47,6 +49,14 @@ export class PasswordRecoveryFormComponent
 
   getErrorMessage(ctrl: FormControl): string {
     return this.formService.getErrorMessage(ctrl);
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleRepeatedPasswordVisibility(): void {
+    this.showRepeatedPassword = !this.showRepeatedPassword;
   }
 
   ngOnInit(): void {

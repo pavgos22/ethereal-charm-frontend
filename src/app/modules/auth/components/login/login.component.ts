@@ -17,6 +17,7 @@ export class LoginComponent implements OnDestroy, AfterViewInit {
   loginForm: FormGroup<LoginForm> = this.formService.initLoginForm();
 
   submitted = false;
+  showPassword = false;
 
   errorMsg$: Observable<string | null> = this.store.select(selectAuthError);
   loading$: Observable<boolean> = this.store.select(selectAuthLoading);
@@ -32,6 +33,10 @@ export class LoginComponent implements OnDestroy, AfterViewInit {
 
   getErrorMessage(control: FormControl): string {
     return this.formService.getErrorMessage(control);
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
   onLogin(): void {
