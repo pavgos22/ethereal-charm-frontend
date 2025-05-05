@@ -1,6 +1,6 @@
 <section>
   <div class="create-order-wrapper">
-    <div class="logo md-4">
+    <div class="logo mt-3">
       <a class="navbar-brand" href="#">Ethereal Charm</a>
     </div>
       <div class="order-form py-xl-1">
@@ -48,7 +48,6 @@
         <div>
           <app-info-form></app-info-form>
         </div>
-
 
         <div class="checkbox-wrapper-46 form-input save-shipping" *ngIf="isAuthenticated">
           <input class="inp-cbx" id="saveShipping" type="checkbox" [(ngModel)]="saveShipping" [disabled]="!isAuthenticated"/>
