@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productsService.getProducts(1, 100).subscribe({
       next: ({ products }) => {
-        this.products = [...products];
+        this.products = products.filter((product) => product.discount);
       },
       error: (err) => {
         console.error('Error fetching products in HomeComponent:', err);

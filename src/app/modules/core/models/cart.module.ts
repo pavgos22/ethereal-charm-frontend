@@ -7,6 +7,7 @@ export interface CartProduct {
   price: number;
   quantity: number;
   summaryPrice: number;
+  createAt: string;
 }
 
 export interface GetCartResponse {

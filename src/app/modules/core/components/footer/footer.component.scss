@@ -140,3 +140,9 @@ footer {
   text-align: center;
   font-size: 12px;
 }
+
+.lg-display {
+  @media(max-width: 1500px) {
+    display: none;
+  }
+}

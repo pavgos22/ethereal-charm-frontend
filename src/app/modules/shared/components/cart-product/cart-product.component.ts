@@ -18,6 +18,10 @@ export class CartProductComponent {
     private notifierService: NotifierService
   ) {}
 
+  getProductDetailsUrl(): string {
+    return `/products/${this.cartProduct.name}-${this.cartProduct.createAt.replace(/-/g, '')}`;
+  }
+
   deleteProductFromCart() {
     this.cartService.deleteProductFromCart(this.cartProduct.uuid).subscribe({
       next: () => {

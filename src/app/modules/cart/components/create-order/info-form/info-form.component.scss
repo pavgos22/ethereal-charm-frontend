@@ -1,1 +1,32 @@
 @import '../_order-forms-styles';
+
+.msg-input {
+  margin-bottom: 2.5rem;
+
+  textarea.input-field.msg-box {
+    position: static;
+    width: 100%;
+    min-height: 120px;
+    padding: .75rem 1rem;
+    border: 1px solid #bbb;
+    border-radius: .5rem;
+    background: #fff;
+
+    font: .95rem 'Poppins', sans-serif;
+    line-height: 1.4;
+    color: #151111;
+
+    resize: vertical;
+    transition: border-color .2s;
+
+    &:focus {
+      border-color: #8c6464;
+    }
+
+    &::placeholder {
+      font-family: 'Poiret One', cursive;
+      color: #c4c4c4;
+      opacity: 1;
+    }
+  }
+}

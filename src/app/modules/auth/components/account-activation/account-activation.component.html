@@ -1,6 +1,6 @@
 <div class="mt-2 d-flex align-items-center gap-2" *ngIf="(loading$ | async) && !errorMessage">
   <mat-progress-spinner diameter="20" strokeWidth="3" mode="indeterminate" [style.--mdc-circular-progress-active-indicator-color]="'#8c6464'"></mat-progress-spinner>
-  Składanie zamówienia...
+  Aktywacja konta, proszę czekać...
 </div>
 
 <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMessage'>
