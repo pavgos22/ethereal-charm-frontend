@@ -44,7 +44,7 @@
       </app-product>
     </div>
     <div class="paginator">
-      <mat-paginator *ngIf='!errorMessage' [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons></mat-paginator>
+      <mat-paginator *ngIf='!errorMessage' [pageSizeOptions]='[8, 16, 32]' [length]='totalCount' showFirstLastButtons></mat-paginator>
     </div>
     <app-alert *ngIf='errorMessage' [alertType]='"warning"' [message]='errorMessage'></app-alert>
   </div>

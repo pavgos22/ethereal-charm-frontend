@@ -1,7 +1,7 @@
 <main>
   <div class="box">
     <div class="inner-box">
-      <div class="logo">
+      <div class="logo pt-4">
         <a class="navbar-brand" href="#">Ethereal Charm</a>
       </div>
       <div class="forms-wrap">
@@ -110,8 +110,8 @@
                *ngIf='errorMsg$ | async as error'>
             {{ error }}
           </div>
-          <div class="mt-2 d-flex align-items-center gap-2" *ngIf="loading$ | async">
-            <mat-progress-spinner diameter="20" strokeWidth="3" mode="indeterminate" [style.--mdc-circular-progress-active-indicator-color]="'#8c6464'"></mat-progress-spinner>
+          <div class="mt-2 d-flex align-items-center gap-2" *ngIf="(loading$ | async) && registerForm.valid">
+        <mat-progress-spinner diameter="20" strokeWidth="3" mode="indeterminate" [style.--mdc-circular-progress-active-indicator-color]="'#8c6464'"></mat-progress-spinner>
             Rejestracja w toku...
           </div>
 

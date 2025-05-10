@@ -16,7 +16,7 @@ export class CategoriesService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}`).pipe(
       tap((categories) => {
-        console.log('Fetched categories from backend:', categories);
+        //console.log('Fetched categories from backend:', categories);
         this.categories.next(categories);
       })
     );

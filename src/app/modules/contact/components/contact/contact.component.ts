@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-contact',
@@ -9,10 +10,23 @@ export class ContactComponent {
   email = '';
   message = '';
 
-  submitContactForm() {
-    console.log('Email:', this.email);
-    console.log('Message:', this.message);
-    alert('Dziękujemy za kontakt!');
+  constructor(private notifierService: NotifierService) {}
+
+  submitContactForm(): void {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(this.email)) {
+      this.notifierService.notify('error', 'Niepoprawny adres e-mail');
+      return;
+    }
+
+    if (!this.message.trim()) {
+      this.notifierService.notify('warning', 'Wiadomość nie może być pusta');
+      return;
+    }
+
     // TODO: Backend
+    this.notifierService.notify('success', 'Dziękujemy za wiadomość!');
+    this.message = '';
   }
 }

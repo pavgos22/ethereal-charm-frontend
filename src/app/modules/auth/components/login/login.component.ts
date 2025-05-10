@@ -22,6 +22,8 @@ export class LoginComponent implements OnDestroy, AfterViewInit {
   errorMsg$: Observable<string | null> = this.store.select(selectAuthError);
   loading$: Observable<boolean> = this.store.select(selectAuthLoading);
 
+  private dispose: (() => void)[] = [];
+
   constructor(
     private formService: FormService,
     private store: Store<AppState>
@@ -51,23 +53,24 @@ export class LoginComponent implements OnDestroy, AfterViewInit {
     );
   }
 
-  ngAfterViewInit(): void {
-    const inputs = document.querySelectorAll<HTMLInputElement>('.input-field');
+  ngAfterViewInit() {
+    document
+      .querySelectorAll<HTMLInputElement>('.input-field')
+      .forEach((inp) => {
+        const onF = () => inp.classList.add('active');
+        const onB = () => inp.value === '' && inp.classList.remove('active');
+        inp.addEventListener('focus', onF);
+        inp.addEventListener('blur', onB);
 
-    inputs.forEach((inp) => {
-      inp.addEventListener('focus', () => {
-        inp.classList.add('active');
+        this.dispose.push(() => {
+          inp.removeEventListener('focus', onF);
+          inp.removeEventListener('blur', onB);
+        });
       });
-
-      inp.addEventListener('blur', () => {
-        if (inp.value === '') {
-          inp.classList.remove('active');
-        }
-      });
-    });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
+    this.dispose.forEach((fn) => fn());
     this.store.dispatch(AuthActions.clearError());
   }
 }
