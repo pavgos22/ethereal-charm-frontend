@@ -3,9 +3,9 @@ import { PrimitiveProduct } from '../../../core/models/product.model';
 import { ProductsService } from '../../../core/services/products.service';
 
 const CATEGORY_IDS = {
-  naszyjniki: '59c47a435e5a',
-  bransoletki: '7637a3d2050d',
-  pierscionki: 'cf873d7ea0bf'
+  naszyjniki: '69d0414db921',
+  kolczyki: '4d2d8f831e36',
+  pierscionki: '7f043dd63c99'
 } as const;
 
 @Component({

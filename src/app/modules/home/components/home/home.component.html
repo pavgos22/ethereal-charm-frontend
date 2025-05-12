@@ -7,7 +7,7 @@
         <p class="overlay-subheading">Delikatna biżuteria, która podkreśla Twoją wyjątkowość.</p>
         <a class="btn btn-one"
             [routerLink]="['/products']"
-            [queryParams]="{ page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }">
+            [queryParams]="{ page: 1, limit: 8, sort_by: 'priority', sort: 'desc' }">
           <span>Zobacz kolekcję</span>
         </a>
       </div>
@@ -80,7 +80,7 @@
       <div class="col-lg-8">
         <div  class="product-item sm-height bg-gray mb-4"
               [routerLink]="['/products']"
-              [queryParams]="{ category: categoryIds.naszyjniki, page: 1, limit: 5 }"
+              [queryParams]="{ category: categoryIds.naszyjniki, page: 1, limit: 8 }"
               tabindex="0" role="link">
           <div class="overlay">
             <div class="overlay-content">
@@ -95,20 +95,20 @@
       <div class="col-lg-4">
         <div  class="product-item sm-height bg-gray mb-4"
               [routerLink]="['/products']"
-              [queryParams]="{ category: categoryIds.bransoletki, page: 1, limit: 5 }"
+              [queryParams]="{ category: categoryIds.kolczyki, page: 1, limit: 8 }"
               tabindex="0" role="link">
           <div class="overlay">
             <div class="overlay-content">
-              <span class="btn btn-one">Bransoletki</span>
+              <span class="btn btn-one">Kolczyki</span>
             </div>
           </div>
-          <img src="assets/img/categories/bracelet1.png"
-               alt="Bransoletki" class="img-fluid">
+          <img src="assets/img/categories/earring2_brightness_20.jpg"
+               alt="Kolczyki" class="img-fluid">
         </div>
 
         <div class="product-item sm-height bg-gray mt-lg-1 mb-4"
               [routerLink]="['/products']"
-              [queryParams]="{ category: categoryIds.pierscionki, page: 1, limit: 5 }"
+              [queryParams]="{ category: categoryIds.pierscionki, page: 1, limit: 8 }"
               tabindex="0" role="link">
           <div class="overlay">
             <div class="overlay-content">
@@ -144,7 +144,6 @@
 </section>
 
 <div class="py-5"></div>
-
 
 
 

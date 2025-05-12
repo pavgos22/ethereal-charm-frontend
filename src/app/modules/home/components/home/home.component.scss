@@ -7,8 +7,16 @@
     height: 75vh;
     overflow: hidden;
 
+    background-image: url("/assets/img/slider/front3.jpg");
     background-size: cover;
-    background: url("/assets/img/slider/front3.jpg") no-repeat fixed center center;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    background-attachment: fixed;
+
+    @media (max-width: 768px) {
+      background-attachment: scroll;
+    }
 
     .overlay {
       position: absolute;
@@ -352,5 +360,3 @@ a {
     display: block;
   }
 }
-
-

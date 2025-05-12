@@ -274,8 +274,31 @@
     }
   }
 
-
   .user-icon {
     margin-left: 0;
   }
 }
+
+@media (max-width: 991.98px) {
+  .custom-navbar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  header {
+    padding-top: 100px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .navbar-toggler {
+    margin-right: 1.8rem;
+    padding: 0;
+  }
+}
+
+

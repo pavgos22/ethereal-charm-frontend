@@ -3,8 +3,7 @@ import {
   Component,
   OnDestroy,
   OnInit,
-  ViewChild,
-  ViewEncapsulation
+  ViewChild
 } from '@angular/core';
 import { ProductsService } from '../../../core/services/products.service';
 import { PrimitiveProduct } from '../../../core/models/product.model';
@@ -28,7 +27,6 @@ import { PriorityEditDialogComponent } from './priority-edit-dialog/priority-edi
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
-  //encapsulation: ViewEncapsulation.None
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   products: PrimitiveProduct[] = [];

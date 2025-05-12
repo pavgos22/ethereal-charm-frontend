@@ -64,6 +64,10 @@
 
 .html-text {
   overflow-wrap: break-word;
+
+  @media (min-width: 1450px) {
+    font-size: 14px;
+  }
 }
 
 .old-price {
