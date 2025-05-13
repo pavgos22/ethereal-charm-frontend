@@ -43,7 +43,7 @@ export class FavouritesComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Product updated');
+        //console.log('Product updated');
         this.refreshFavourites();
       }
     });

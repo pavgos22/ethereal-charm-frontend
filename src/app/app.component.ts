@@ -4,7 +4,8 @@ import { AppState } from './store/app.reducer';
 import * as AuthActions from '../app/modules/auth/store/auth.actions';
 import { CartService } from './modules/core/services/cart.service';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { Location, PopStateEvent } from '@angular/common';
+import { Location, PopStateEvent, ViewportScroller } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +22,15 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>,
     private cartService: CartService,
     private router: Router,
-    private location: Location
-  ) {}
+    private location: Location,
+    viewport: ViewportScroller
+  ) {
+    router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe(() => {
+        setTimeout(() => viewport.scrollToPosition([0, 0]));
+      });
+  }
 
   ngOnInit(): void {
     this.store.dispatch(AuthActions.autoLogin());

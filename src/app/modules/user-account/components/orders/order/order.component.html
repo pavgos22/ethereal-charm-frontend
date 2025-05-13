@@ -1,6 +1,10 @@
 <section class="left-p" *ngIf="order">
   <p>Numer zamówienia: {{ order.orders }}</p>
-  <p>Status zamówienia: <span class="order-status">{{ order.status }}</span></p>
+  <p>Status zamówienia:
+    <span class="order-status" [ngClass]="order.status.toLowerCase().replaceAll('_', '-')">
+    {{ order.status }}
+  </span>
+  </p>
   <p>Kwota zamówienia: {{ order.summaryPrice | currency: 'zł' }}</p>
 
   <div class="row my-2">

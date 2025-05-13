@@ -23,7 +23,7 @@ export class OrderDetailsComponent implements OnInit {
       this.orderDetailsService.getOrderDetails(orderUuid).subscribe({
         next: (details) => {
           this.orderDetails = details;
-          console.log('Order Details:', details);
+          //console.log('Order Details:', details);
         },
         error: (err) => {
           this.errorMsg = 'Nie udało się załadować szczegółów zamówienia.';

@@ -19,12 +19,10 @@ export class CookieNotifyComponent implements OnInit {
 
   acceptAllCookies(): void {
     this.setCookiesAccepted(true);
-    console.log('Accepted all cookies');
   }
 
   acceptNecessaryCookies(): void {
     this.setCookiesAccepted(false);
-    console.log('Accepted only necessary cookies');
   }
 
   private setCookiesAccepted(acceptAll: boolean): void {

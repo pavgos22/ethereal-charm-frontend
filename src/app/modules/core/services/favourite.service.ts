@@ -48,7 +48,7 @@ export class FavouriteService {
       this.favouritesSubject.next(
         favourites.filter((fav) => fav.uid !== productUid)
       );
-      this.notifier.notify('success', 'Usunięto produkt z ulubionych');
+      this.notifier.notify('warning', 'Usunięto produkt z ulubionych');
     } else {
       this.productService.getProductByUid(productUid).subscribe({
         next: (fullProduct) => {

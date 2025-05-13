@@ -26,7 +26,7 @@ export class ProductEditDialogComponent {
     private dialogRef: MatDialogRef<ProductEditDialogComponent>
   ) {
     this.editForm = this.formService.initEditProductForm();
-    console.log('Product id: ' + this.data.productId);
+    //console.log('Product id: ' + this.data.productId);
   }
 
   ngOnInit() {

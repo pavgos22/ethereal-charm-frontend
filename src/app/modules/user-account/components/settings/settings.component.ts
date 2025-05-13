@@ -49,7 +49,7 @@ export class SettingsComponent implements OnInit {
       localStorage.setItem('allCookies', String(isChecked));
     }
 
-    console.log(`${type} cookies accepted:`, isChecked);
+    //console.log(`${type} cookies accepted:`, isChecked);
   }
 
   onDeactivateAccount(): void {

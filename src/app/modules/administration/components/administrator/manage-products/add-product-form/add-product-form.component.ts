@@ -51,7 +51,7 @@ export class AddProductFormComponent {
   uploadFile() {
     this.errorImageUploadMsg = null;
     if (this.selectedFile) {
-      console.log('Selected file:', this.selectedFile);
+      //console.log('Selected file:', this.selectedFile);
       const formData = new FormData();
       formData.append('multipartFile', this.selectedFile);
 

@@ -1,6 +1,27 @@
 .order-status {
   font-family: Poppins, sans-serif;
-  color: #d99425;
+  font-weight: bold;
+  text-transform: capitalize;
+
+  &.pending {
+    color: #d99425;
+  }
+
+  &.waiting-for-confirmation {
+    color: #17a2b8;
+  }
+
+  &.completed {
+    color: #28a745;
+  }
+
+  &.canceled {
+    color: #dc3545;
+  }
+
+  &.failed {
+    color: #6c757d;
+  }
 }
 
 .no-info, h2 {

@@ -68,7 +68,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart() {
-    console.log(this.quantityControl.value);
+    //console.log(this.quantityControl.value);
     const body: PostCartBody = {
       product: this.product!.uid,
       quantity: Number(this.quantityControl.value)

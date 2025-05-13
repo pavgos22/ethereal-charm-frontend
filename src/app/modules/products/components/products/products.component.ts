@@ -178,8 +178,8 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openEditDialog(product: PrimitiveProduct): void {
-    console.log('Product: ', product);
-    console.log('Product uid: ', product.uid);
+    //console.log('Product: ', product);
+    //console.log('Product uid: ', product.uid);
     const dialogRef = this.dialog.open(ProductEditDialogComponent, {
       width: '400px',
       data: {
@@ -217,7 +217,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   refreshProducts(): void {
     this.productsService.getProducts(1, 10).subscribe({
       next: ({ products, totalCount }) => {
-        console.log('Products from API: ', products);
+        //console.log('Products from API: ', products);
         this.products = [...products];
         this.totalCount = totalCount;
       },
