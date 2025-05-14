@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { orderReducer } from './store/order.reducer';
 import { OrderEffects } from './store/order.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EffectsModule } from '@ngrx/effects';
     CartRoutingModule,
     FormsModule,
     StoreModule.forFeature('order', orderReducer),
-    EffectsModule.forFeature([OrderEffects])
+    EffectsModule.forFeature([OrderEffects]),
+    CoreModule
   ]
 })
 export class CartModule {}

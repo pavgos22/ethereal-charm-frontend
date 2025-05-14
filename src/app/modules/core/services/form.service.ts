@@ -242,7 +242,7 @@ export class FormService {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(1),
         Validators.maxLength(14)
       ]),
       city: new FormControl('', [Validators.required]),
@@ -264,7 +264,7 @@ export class FormService {
     return new FormGroup({
       companyName: new FormControl('', {}),
       nip: new FormControl('', {
-        validators: [Validators.pattern(/^\d{10}$/)]
+        validators: [Validators.maxLength(32)]
       })
     });
   }

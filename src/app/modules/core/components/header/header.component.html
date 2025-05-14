@@ -2,31 +2,41 @@
   <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
     <div class="container">
       <a class="navbar-brand" routerLink='/'>Ethereal Charm</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div
+        class="navbar-collapse"
+        *ngIf="!isMobile || navbarOpen"
+        [@menuAnimation]="isMobile ? (navbarOpen ? 'open' : 'closed') : null">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item m-xl-1">
             <a class="nav-link" aria-current="page" routerLink="" routerLinkActive="active"
-               [routerLinkActiveOptions]="{ exact: true }">Strona główna</a>
+               [routerLinkActiveOptions]="{ exact: true }" (click)="closeNavbar()">Strona główna</a>
           </li>
 
           <li class="nav-item m-xl-1 dropdown products-dropdown">
-            <a class="nav-link dropdown-toggle"
+            <a *ngIf="!isMobile"
+               class="nav-link dropdown-toggle"
                id="productsDropdown"
                href="javascript:void(0)"
-               [attr.data-bs-toggle]="isMobile ? 'dropdown' : null"
-               (click)="!isMobile && onProductsClick($event)">
+               (click)="onProductsClick($event)">
               Produkty
             </a>
+
+            <a *ngIf="isMobile"
+               class="nav-link"
+               routerLink="/products"
+               [queryParams]="{ page: 1, limit: 8, sort_by: 'priority', sort: 'desc' }" (click)="closeNavbar()">
+              Produkty
+            </a>
+
 
             <ul class="dropdown-menu" aria-labelledby="productsDropdown">
               <li>
                 <a class="dropdown-item"
                    [routerLink]="['/products']"
-                   [queryParams]="{ page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }">
+                   [queryParams]="{ page: 1, limit: 8, sort_by: 'priority', sort: 'desc' }">
                   Wszystkie
                 </a>
               </li>
@@ -42,18 +52,18 @@
           </li>
 
           <li class="nav-item m-xl-1">
-            <a class="nav-link" routerLink="/about" routerLinkActive="active">O nas</a>
+            <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="closeNavbar()">O nas</a>
           </li>
 
           <li class="nav-item m-xl-1">
-            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Kontakt</a>
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="closeNavbar()">Kontakt</a>
           </li>
         </ul>
 
         <ul class="navbar-nav mobile-icons-container flex-row w-100 justify-content-center align-items-center gap-3">
           <!-- Cart Icon -->
           <li class="nav-item">
-            <a class="nav-link display-initial cart-icon" routerLink="/cart">
+            <a class="nav-link display-initial cart-icon" routerLink="/cart" (click)="closeNavbar()">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                    stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag">
@@ -72,7 +82,7 @@
           <!-- Favourites Icon -->
           <li class="nav-item">
             <a class="nav-link display-initial cart-icon"
-               [routerLink]="(user$ | async) ? '/account/favourites' : '/login'">
+               [routerLink]="(user$ | async) ? '/account/favourites' : '/login'" (click)="closeNavbar()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -115,10 +125,10 @@
               </a>
 
               <ul class="dropdown-menu dropdown-menu-end no-border" aria-labelledby="accountLink">
-                <li><a class="dropdown-item no-border" routerLink="/account/profile">Profil</a></li>
-                <li><a class="dropdown-item no-border" routerLink="/account/orders">Zamówienia</a></li>
-                <li><a class="dropdown-item no-border" routerLink="/account/favourites">Ulubione</a></li>
-                <li><a class="dropdown-item no-border" routerLink="/account/settings">Ustawienia</a></li>
+                <li><a class="dropdown-item no-border" routerLink="/account/profile" (click)="closeNavbar()">Profil</a></li>
+                <li><a class="dropdown-item no-border" routerLink="/account/orders" (click)="closeNavbar()">Zamówienia</a></li>
+                <li><a class="dropdown-item no-border" routerLink="/account/favourites" (click)="closeNavbar()">Ulubione</a></li>
+                <li><a class="dropdown-item no-border" routerLink="/account/settings" (click)="closeNavbar()">Ustawienia</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
@@ -131,7 +141,7 @@
 
             <!-- Admin Icon -->
             <li class="nav-item" *ngIf="isAdmin(user.role)">
-              <a class="nav-link display-initial user-icon" routerLink="/admin/panel" title="Panel administracyjny">
+              <a class="nav-link display-initial user-icon" routerLink="/admin/panel" title="Panel administracyjny" (click)="closeNavbar()">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

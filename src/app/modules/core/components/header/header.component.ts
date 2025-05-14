@@ -15,11 +15,25 @@ import { Category } from '../../models/categories.model';
 import { CategoriesService } from '../../services/categories.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from '@angular/animations';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  animations: [
+    trigger('menuAnimation', [
+      state('void', style({ height: '0', opacity: 0 })),
+      state('*', style({ height: '*', opacity: 1 })),
+      transition('void <=> *', animate('300ms cubic-bezier(0.4, 0, 0.2, 1)'))
+    ])
+  ]
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('accountLink') accountLink!: ElementRef;
@@ -28,6 +42,7 @@ export class HeaderComponent implements OnInit {
   cartTotalCount$: BehaviorSubject<number> = this.cartService.totalCount$;
   isMobile = window.innerWidth < 992;
   private dropdownOpen = false;
+  navbarOpen = false;
 
   categories$: Observable<Category[]> =
     this.categoriesService.categories.asObservable();
@@ -50,12 +65,25 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
+  closeNavbar() {
+    if (this.isMobile) {
+      this.navbarOpen = false;
+    }
+  }
+
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
-    if (
-      this.dropdownOpen &&
-      !this.accountLink.nativeElement.contains(event.target)
-    ) {
+    const target = event.target as HTMLElement;
+
+    const clickedInsideAccount =
+      this.accountLink?.nativeElement.contains(target);
+    const clickedNavbarToggler = target.closest('.navbar-toggler');
+
+    if (this.dropdownOpen && !clickedInsideAccount && !clickedNavbarToggler) {
       this.closeAccountDropdown();
     }
   }
@@ -64,7 +92,7 @@ export class HeaderComponent implements OnInit {
     if (window.innerWidth >= 992) {
       ev.preventDefault();
       this.router.navigate(['/products'], {
-        queryParams: { page: 1, limit: 5, sort_by: 'priority', sort: 'desc' }
+        queryParams: { page: 1, limit: 8, sort_by: 'priority', sort: 'desc' }
       });
     }
   }
@@ -100,6 +128,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.closeNavbar();
     this.store.dispatch(AuthActions.logout());
   }
 

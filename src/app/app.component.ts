@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.reducer';
 import * as AuthActions from '../app/modules/auth/store/auth.actions';
@@ -7,12 +7,14 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Location, PopStateEvent, ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs';
 
+declare let bootstrap: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'ethereal-charm';
 
   private lastPoppedUrl: string | undefined;
@@ -32,6 +34,21 @@ export class AppComponent implements OnInit {
       });
   }
 
+  ngAfterViewInit(): void {
+    const collapseElement = document.getElementById('navbarNav');
+    const toggleButton = document.querySelector('.navbar-toggler');
+
+    if (collapseElement && toggleButton) {
+      const bsCollapse = new bootstrap.Collapse(collapseElement, {
+        toggle: false
+      });
+
+      toggleButton.addEventListener('click', () => {
+        bsCollapse.toggle();
+      });
+    }
+  }
+
   ngOnInit(): void {
     this.store.dispatch(AuthActions.autoLogin());
 
@@ -42,21 +59,6 @@ export class AppComponent implements OnInit {
 
     this.location.subscribe((ev: PopStateEvent) => {
       this.lastPoppedUrl = ev.url;
-    });
-
-    this.router.events.subscribe((ev: any) => {
-      if (ev instanceof NavigationStart) {
-        if (ev.url !== this.lastPoppedUrl) {
-          this.yScrollStack.push(window.scrollY);
-        }
-      } else if (ev instanceof NavigationEnd) {
-        if (ev.url === this.lastPoppedUrl) {
-          this.lastPoppedUrl = undefined;
-          window.scrollTo(0, this.yScrollStack.pop() ?? 0);
-        } else {
-          window.scrollTo(0, 0);
-        }
-      }
     });
   }
 }

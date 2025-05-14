@@ -3,7 +3,8 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  AfterViewInit
+  AfterViewInit,
+  ChangeDetectorRef
 } from '@angular/core';
 import { Carousel } from 'bootstrap';
 
@@ -16,14 +17,25 @@ export class ImagesCarouselComponent implements AfterViewInit {
   @Input() productName!: string;
   @Input() imageUrls!: string[];
 
-  @ViewChild('carousel', { static: true }) carousel!: ElementRef<HTMLElement>;
+  @ViewChild('carousel', { static: true }) carouselEl!: ElementRef<HTMLElement>;
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
-    new Carousel(this.carousel.nativeElement, {
-      interval: 5000,
-      ride: 'carousel',
+    const carouselElement = this.carouselEl.nativeElement;
+
+    carouselElement.setAttribute('data-bs-ride', 'carousel');
+
+    const instance = new Carousel(carouselElement, {
+      interval: 200000,
       wrap: true,
       touch: true
     });
+
+    instance.cycle();
+  }
+
+  trackByIdx(_: number, __: unknown): number {
+    return _;
   }
 }

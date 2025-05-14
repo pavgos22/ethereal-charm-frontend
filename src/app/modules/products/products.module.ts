@@ -8,6 +8,7 @@ import { ProductDetailsComponent } from './components/products/product-details/p
 import { ImagesCarouselComponent } from './components/products/product-details/images-carousel/images-carousel.component';
 import { ProductEditDialogComponent } from './components/products/product-edit-dialog/product-edit-dialog.component';
 import { PriorityEditDialogComponent } from './components/products/priority-edit-dialog/priority-edit-dialog.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,6 @@ import { PriorityEditDialogComponent } from './components/products/priority-edit
     PriorityEditDialogComponent
   ],
   exports: [ProductComponent],
-  imports: [SharedModule, ProductsRoutingModule]
+  imports: [SharedModule, ProductsRoutingModule, CoreModule]
 })
 export class ProductsModule {}

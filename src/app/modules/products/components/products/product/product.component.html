@@ -1,6 +1,6 @@
 <div class="product-item" [routerLink]="getProductDetailsUrl()">
   <figure>
-    <img [src]="product.imageUrl" [alt]="product.name" class="img-fluid" />
+    <img [src]="product.imageUrl" [alt]="product.name" class="img-fluid" loading="lazy" />
   </figure>
 
   <ng-container *ngIf="user$ | async as user">
