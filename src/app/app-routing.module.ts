@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './modules/core/guards/auth.guard';
 
 const routes: Routes = [
@@ -51,7 +51,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
-      scrollOffset: [0, 0]
+      scrollOffset: [0, 0],
+      preloadingStrategy: PreloadAllModules
     })
   ],
   exports: [RouterModule]

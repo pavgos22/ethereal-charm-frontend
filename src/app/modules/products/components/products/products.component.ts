@@ -142,7 +142,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   searchProducts() {
     this.paginator.pageIndex = 0;
-    this.paginator.pageSize = 5;
+    this.paginator.pageSize = 8;
 
     this.navigateToSearchedParams();
   }

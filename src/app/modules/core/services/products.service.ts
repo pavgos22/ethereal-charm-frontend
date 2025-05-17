@@ -14,7 +14,7 @@ import {
   providedIn: 'root'
 })
 export class ProductsService {
-  apiUrl = `${environment.apiUrl}/product`; 
+  apiUrl = `${environment.apiUrl}/product`;
 
   constructor(private http: HttpClient) {}
 
@@ -30,7 +30,7 @@ export class ProductsService {
 
   getProducts(
     pageIndex = 1,
-    itemsPerPage = 5,
+    itemsPerPage = 8,
     name: string | null = null,
     sortElement: string | null = 'priority',
     order: string | null = 'desc',
