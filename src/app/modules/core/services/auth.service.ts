@@ -65,6 +65,24 @@ export class AuthService {
     );
   }
 
+  toggleTwoFA(enabled: boolean) {
+    return this.http.patch<{ code: string }>(
+      `${this.apiUrl}/settings/2fa`,
+      null,
+      { params: { enabled } }
+    );
+  }
+
+  verifyTwoFA(challengeId: string, code: string) {
+    return this.http.post<{
+      login: string;
+      email: string;
+      role: string;
+    }>(`${this.apiUrl}/2fa/verify`, null, {
+      params: { challengeId, code }
+    });
+  }
+
   resetPassword(body: ResetPasswordData): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/reset-password`, body);
   }

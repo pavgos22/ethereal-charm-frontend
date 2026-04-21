@@ -1,0 +1,79 @@
+<main>
+  <div class="box">
+    <div class="inner-box">
+      <div class="forms-wrap">
+        <div class="logo">
+          <a class="navbar-brand" routerLink="/">Ethereal Charm</a>
+        </div>
+
+        <div class="text-center">
+          <ng-container *ngIf="challengeId$ | async as challengeId; else noChallenge">
+            <form [formGroup]="form" (ngSubmit)="submit(challengeId)" novalidate>
+              <div class="heading">
+                <h2>Potwierdź logowanie</h2>
+                <h6>Wpisz 6-cyfrowy kod przesłany na e-mail</h6>
+              </div>
+
+              <div class="actual-form">
+                <div class="form-input">
+                  <input
+                    class="input-field"
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    placeholder="••••••"
+                    maxlength="6"
+                    formControlName="code"
+                    [class.invalid]="submitted && form.controls.code.invalid"
+                  />
+                  <label>Kod</label>
+                </div>
+
+                <div class="control-err" *ngIf="submitted && form.controls.code.invalid">
+                  <mat-error>Podaj poprawny 6-cyfrowy kod.</mat-error>
+                </div>
+              </div>
+
+              <div class="alert alert-danger mt-2" *ngIf="(errorMsg$ | async) as error">
+                {{ error }}
+              </div>
+
+              <div class="mt-2 spinner-wrapper" *ngIf="loading$ | async">
+                <mat-progress-spinner
+                  diameter="20"
+                  strokeWidth="3"
+                  mode="indeterminate">
+                </mat-progress-spinner>
+                <span>Sprawdzanie kodu…</span>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button class="sign-btn" type="submit" [disabled]="loading$ | async">
+                  Potwierdź
+                </button>
+              </div>
+
+              <p class="text">
+                <a routerLink="/login">Zmień konto / wróć</a>
+              </p>
+            </form>
+          </ng-container>
+
+          <ng-template #noChallenge>
+            <div class="no-challenge">
+              <div class="heading">
+                <h2>Weryfikacja wygasła</h2>
+                <h6>Rozpocznij logowanie ponownie.</h6>
+              </div>
+              <p class="text">
+                <a routerLink="/login">Przejdź do logowania</a>
+              </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="side-photo"></div>
+    </div>
+  </div>
+</main>

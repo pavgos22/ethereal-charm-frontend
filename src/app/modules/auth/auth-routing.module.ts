@@ -5,10 +5,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { AccountActivationComponent } from './components/account-activation/account-activation.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { PasswordRecoveryFormComponent } from './components/password-recovery-form/password-recovery-form.component';
+import { TwoFaComponent } from './components/two-fa/two-fa.component';
 import { UnauthGuard } from '../core/guards/unauth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [UnauthGuard] },
+  { path: 'login/code', component: TwoFaComponent, canActivate: [UnauthGuard] },
   {
     path: 'register',
     component: RegisterComponent,

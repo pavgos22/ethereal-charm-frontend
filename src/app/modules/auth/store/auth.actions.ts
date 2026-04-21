@@ -25,6 +25,15 @@ const ACCOUNT_ACTIVATION_TYPE = '[Auth] Account Activation';
 const ACCOUNT_ACTIVATION_SUCCESS = '[Auth] Account Activation Success';
 const ACCOUNT_ACTIVATION_FAILURE = '[Auth] Account Activation Failure';
 
+export const AUTH_2FA_REQUIRED = '[Auth] TwoFA Required';
+export const AUTH_2FA_VERIFY = '[Auth] TwoFA Verify';
+export const AUTH_2FA_VERIFY_SUCCESS = '[Auth] TwoFA Verify Success';
+export const AUTH_2FA_VERIFY_FAILURE = '[Auth] TwoFA Verify Failure';
+
+export const AUTH_2FA_TOGGLE = '[Auth] Toggle TwoFA';
+export const AUTH_2FA_TOGGLE_SUCCESS = '[Auth] Toggle TwoFA Success';
+export const AUTH_2FA_TOGGLE_FAILURE = '[Auth] Toggle TwoFA Failure';
+
 const CLEAR_ERROR_TYPE = '[Auth] Clear Error';
 
 export const login = createAction(
@@ -94,3 +103,38 @@ export const activateAccountFailure = createAction(
 );
 
 export const passwordResetSuccess = createAction(PASSWORD_RESET_SUCCESS_TYPE);
+
+export const twoFARequired = createAction(
+  AUTH_2FA_REQUIRED,
+  props<{ challengeId: string }>()
+);
+
+export const twoFAVerify = createAction(
+  AUTH_2FA_VERIFY,
+  props<{ challengeId: string; code: string }>()
+);
+
+export const twoFAVerifySuccess = createAction(
+  AUTH_2FA_VERIFY_SUCCESS,
+  props<{ user: IUser }>()
+);
+
+export const twoFAVerifyFailure = createAction(
+  AUTH_2FA_VERIFY_FAILURE,
+  props<{ error: string }>()
+);
+
+export const toggleTwoFA = createAction(
+  AUTH_2FA_TOGGLE,
+  props<{ enabled: boolean }>()
+);
+
+export const toggleTwoFASuccess = createAction(
+  AUTH_2FA_TOGGLE_SUCCESS,
+  props<{ enabled: boolean }>()
+);
+
+export const toggleTwoFAFailure = createAction(
+  AUTH_2FA_TOGGLE_FAILURE,
+  props<{ error: string }>()
+);

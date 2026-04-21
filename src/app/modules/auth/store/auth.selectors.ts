@@ -8,7 +8,6 @@ export const selectAuthUser = createSelector(
   selectAuth,
   (state: AuthState) => state.user
 );
-
 export const selectAuthLoading = createSelector(
   selectAuth,
   (state: AuthState) => state.loading
@@ -16,4 +15,8 @@ export const selectAuthLoading = createSelector(
 export const selectAuthError = createSelector(
   selectAuth,
   (state: AuthState) => state.error
+);
+export const selectTwoFAChallengeId = createSelector(
+  selectAuth,
+  (state: AuthState) => state.twoFAChallengeId
 );

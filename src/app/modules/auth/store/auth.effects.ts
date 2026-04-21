@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../core/services/auth.service';
 import * as AuthActions from './auth.actions';
-import { catchError, EMPTY, map, of, switchMap } from 'rxjs';
+import { catchError, EMPTY, map, of, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 
@@ -11,28 +11,66 @@ export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.login),
-      switchMap((action) => {
-        return this.authService.login(action.loginData).pipe(
-          map((user) => {
-            this.router.navigate(['/']);
-            this.notifierService.notify('success', 'Poprawnie zalogowano się!');
-            return AuthActions.loginSuccess({ user: { ...user } });
+      switchMap(({ loginData }) =>
+        this.authService.login(loginData).pipe(
+          map((resp: any) => {
+            if (resp?.twoFactorRequired) {
+              return AuthActions.twoFARequired({
+                challengeId: resp.challengeId
+              });
+            }
+            this.notifierService.notify('success', 'Zalogowano.');
+            return AuthActions.loginSuccess({ user: resp as any });
           }),
           catchError((err) => {
-            let errorMessage = 'Błąd logowania';
-            if (err.error?.code === 'A2') {
-              errorMessage = 'Podane dane są nieprawidłowe';
-            }
-            return of(
-              AuthActions.loginFailure({
-                error: errorMessage
-              })
-            );
+            const msg =
+              err?.error?.code === 'A2'
+                ? 'Nieprawidłowe dane.'
+                : 'Błąd logowania.';
+            return of(AuthActions.loginFailure({ error: msg }));
           })
-        );
-      })
+        )
+      )
     );
   });
+
+  navigateTo2FA$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.twoFARequired),
+        tap(() => {
+          this.notifierService.notify('info', 'Wpisz kod wysłany na e-mail.');
+          this.router.navigate(['/login/code']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  navigateAfterLoginSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.loginSuccess),
+        tap(() => {
+          this.router.navigate(['/']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  navigateAfter2FASuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.twoFAVerifySuccess),
+        tap(() => {
+          this.notifierService.notify('success', 'Zalogowano pomyślnie.');
+          this.router.navigate(['/']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   autoLogin$ = createEffect(
     () => {
@@ -135,6 +173,54 @@ export class AuthEffects {
           })
         );
       })
+    );
+  });
+
+  twoFAVerify$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.twoFAVerify),
+      switchMap(({ challengeId, code }) =>
+        this.authService.verifyTwoFA(challengeId, code).pipe(
+          map((user) => {
+            this.notifierService.notify('success', 'Zalogowano.');
+            this.router.navigate(['/']);
+            return AuthActions.twoFAVerifySuccess({ user: user as any });
+          }),
+          catchError(() =>
+            of(
+              AuthActions.twoFAVerifyFailure({
+                error: 'Nieprawidłowy kod lub kod wygasł.'
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+
+  toggleTwoFA$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.toggleTwoFA),
+      switchMap(({ enabled }) =>
+        this.authService.toggleTwoFA(enabled).pipe(
+          map(() => {
+            this.notifierService.notify(
+              'success',
+              enabled
+                ? 'Włączono weryfikację dwuetapową.'
+                : 'Wyłączono weryfikację dwuetapową.'
+            );
+            return AuthActions.toggleTwoFASuccess({ enabled });
+          }),
+          catchError(() =>
+            of(
+              AuthActions.toggleTwoFAFailure({
+                error: 'Nie udało się zmienić ustawienia.'
+              })
+            )
+          )
+        )
+      )
     );
   });
 

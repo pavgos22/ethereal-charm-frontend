@@ -8,6 +8,7 @@ import { AccountActivationComponent } from './components/account-activation/acco
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { PasswordRecoveryFormComponent } from './components/password-recovery-form/password-recovery-form.component';
 import { CoreModule } from '../core/core.module';
+import { TwoFaComponent } from './components/two-fa/two-fa.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CoreModule } from '../core/core.module';
     RegisterComponent,
     AccountActivationComponent,
     PasswordRecoveryComponent,
-    PasswordRecoveryFormComponent
+    PasswordRecoveryFormComponent,
+    TwoFaComponent
   ],
   imports: [SharedModule, AuthRoutingModule, CoreModule]
 })

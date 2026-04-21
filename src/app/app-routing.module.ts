@@ -9,6 +9,13 @@ const routes: Routes = [
       import('./modules/home/home.module').then((m) => m.HomeModule),
     pathMatch: 'full'
   },
+
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule)
+  },
+
   {
     path: 'products',
     loadChildren: () =>
@@ -43,7 +50,9 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () =>
       import('./modules/contact/contact.module').then((m) => m.ContactModule)
-  }
+  },
+
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

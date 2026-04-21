@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertComponent } from './components/alert/alert.component';
 import { QuantityControlComponent } from './controles/quantity-control/quantity-control.component';
 import { InputOnlyNumberDirective } from './directives/input-only-number.directive';
@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   exports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule,
     AlertComponent,
     CartProductComponent,

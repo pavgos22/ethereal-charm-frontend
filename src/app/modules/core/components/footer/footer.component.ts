@@ -9,6 +9,7 @@ import { NotifierService } from 'angular-notifier'; // zakładamy, że używasz 
 })
 export class FooterComponent {
   newsletterForm: FormGroup;
+  readonly currentYear: number = new Date().getFullYear();
 
   constructor(
     private fb: FormBuilder,
